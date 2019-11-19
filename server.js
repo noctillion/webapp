@@ -1,7 +1,7 @@
 let express = require("express");
 let app = express();
 //let mongoose = require("mongoose");
-let mongoConnect = require("./util/database");
+let mongoConnect = require("./util/database").mongoConnect;
 
 let reloadMagic = require("./reload-magic.js");
 
@@ -31,7 +31,7 @@ app.all("/*", (req, res, next) => {
   res.sendFile(__dirname + "/build/index.html");
 });
 
-mongoConnect(client => {
+mongoConnect(() => {
   app.listen(4000, "0.0.0.0", () => {
     console.log("Server running on port 4000");
   });
