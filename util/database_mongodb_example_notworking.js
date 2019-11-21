@@ -3,6 +3,7 @@ let MongoClient = mongodb.MongoClient;
 let dbp = require("./keys").mongoURI;
 
 let _db; // _db solo para uso interno
+//console.log(_db);
 let mongoConnect = callback => {
   MongoClient.connect(dbp, { useUnifiedTopology: true, useNewUrlParser: true })
     .then(client => {
@@ -26,3 +27,5 @@ let getDb = () => {
 exports.mongoConnect = mongoConnect;
 
 exports.getDb = getDb;
+
+//exports._db = _db;
