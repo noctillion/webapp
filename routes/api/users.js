@@ -49,4 +49,29 @@ router.post("/register", (req, res) => {
   });
 });
 
+/// creando ruta para validar ////
+
+// @route GET api/users/login
+// @desc logi user // return token
+// @access Public
+
+router.post("/login", (req, res) => {
+  let email = req.body.email;
+  let password = req.body.password;
+  User.findOne({ email: email }).then(user => {
+    if (!user) {
+      return res
+        .status(400)
+        .json({ email: "Email doesnt exist user not found" });
+    }
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+        res.json({ msg: "success" });
+      } else {
+        return res.status(400).json({ msg: "not succeded" });
+      }
+    });
+  });
+});
+
 module.exports = router;
