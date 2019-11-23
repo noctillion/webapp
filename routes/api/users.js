@@ -32,7 +32,7 @@ router.post("/register", (req, res) => {
         d: "mm" // default
       });
       let newUser = new User({
-        username: req.body.username,
+        name: req.body.name,
         email: req.body.email,
         password: req.body.password,
         avatar: avatar,
@@ -73,7 +73,7 @@ router.post("/login", (req, res) => {
         ///res.json({ msg: "success" });
         // user match
         // jwt necesita payload y key que es un secreto
-        let payload = { id: user.id, name: user.username };
+        let payload = { id: user.id, name: user.name };
         jwt.sign(payload, keys, { expiresIn: 4000 }, (err, token) => {
           res.json({ msg: "success token", token: "Bearer " + token });
         });
@@ -98,8 +98,9 @@ router.get(
     //res.json(req.user);
     res.json({
       id: req.user.id,
-      name: req.user.username,
-      email: req.user.email
+      name: req.user.name,
+      email: req.user.email,
+      avatar: req.user.avatar
     });
   }
 );

@@ -44,11 +44,13 @@ app.all("/*", (req, res, next) => {
   res.sendFile(__dirname + "/build/index.html");
 });
 
+//mongoose.set("useFindAndModify", false);
 mongoose
   .connect(dbp, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(() => console.log("MongoDB conected"))
   .catch(err => console.log(err));

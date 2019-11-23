@@ -9,12 +9,18 @@ router.get("/test", (req, res) =>
 );
 
 router.get("/target", (req, res) => {
-  Mirna.findOne({ target: req.body.gene }).then(user => {
+  Mirna.findOne({ gene: req.body.gene }).then(user => {
     if (user) {
       return res.json({ gene: req.body.gene });
     } else {
       return res.json({ gene: "Target no esta en la lista" });
     }
+  });
+});
+
+router.get("/target2", (req, res) => {
+  Mirna.find().then(user => {
+    res.json(user);
   });
 });
 

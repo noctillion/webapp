@@ -3,7 +3,7 @@ let Schema = mongoose.Schema;
 
 let mirnaSchema = new Schema(
   {
-    gene: String,
+    gene: { type: String, trim: true },
     gene_loc: String,
     consecutive: Number,
     psrnat: {
