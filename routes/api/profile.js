@@ -30,7 +30,7 @@ router.get(
     let errors = {};
 
     Profile.findOne({ user: req.user.id }) //
-      .populate("user", ["user", "avatar"])
+      .populate("user", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
           errors.nonprofile = "There is not profile for the user";
@@ -38,9 +38,76 @@ router.get(
         }
         res.json(profile);
       })
-      .catch(err => res.status(404).json(err));
+      .catch(err => res.status(404).json(errors)); // pilas aqui lo cambie err to errors
   }
 );
+
+//// ruta publica
+// @route GET api/profile/all
+// @desc get all the profiles
+// @acces public
+/// permite ver todos los perfiles los guarda en un array
+
+router.get("/all", (req, res) => {
+  let errors = {};
+
+  Profile.find()
+    .populate("user", ["name", "avatar"])
+    .then(profiles => {
+      if (!profiles) {
+        errors.nonprofile = " There are not profiles available";
+        return res.status(404).json(errors);
+      }
+      res.json(profiles);
+    })
+    .catch(err => res.status(404).json({ profile: "Profiles not available" }));
+});
+
+//// ruta publica
+// @route GET api/profile/handle/:handle
+// @desc get current profile by handle
+// @acces public
+/// permite ver el perfil de la gente
+
+router.get("/handle/:handle", (req, res) => {
+  let errors = {};
+
+  Profile.findOne({ handle: req.params.handle })
+    .populate("user", ["name", "avatar"])
+    .then(profile => {
+      if (!profile) {
+        errors.nonprofile = "There is not profile fot this user";
+        res.status(404).json(errors);
+      }
+      res.json(profile);
+    })
+    .catch(err =>
+      res.status(404).json({ profile: "There is not profile for this user" })
+    );
+});
+
+//// ruta publica
+// @route GET api/profile/user/:user_id
+// @desc get current profile by id
+// @acces public
+/// permite ver el perfil de la gente
+
+router.get("/user/:user_id", (req, res) => {
+  let errors = {};
+
+  Profile.findOne({ user: req.params.user_id })
+    .populate("user", ["name", "avatar"])
+    .then(profile => {
+      if (!profile) {
+        errors.nonprofile = "There is not profile fot this user";
+        res.status(404).json(errors);
+      }
+      res.json(profile);
+    })
+    .catch(err =>
+      res.status(404).json({ profile: "There is not profile for this user" })
+    );
+});
 
 //// ruta privada
 // @route POST api/profile
@@ -123,6 +190,130 @@ router.post(
           new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
+    });
+  }
+);
+
+//// ruta privada
+// @route DELETE api/experience/:exp_id
+// @desc DELETE
+// @acces private
+
+router.delete(
+  "/experience/:exp_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        //get remove index
+        let removeIndex = profile.experience
+          .map(item => item.id)
+          .indexOf(req.params.exp_id);
+
+        //// splice out of array
+        //console.log(removeIndex);
+        profile.experience.splice(removeIndex, 1);
+
+        //
+
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err =>
+        res.status(404).json({ msg: "error in deleting experience" })
+      );
+  }
+);
+
+//// ruta privada
+// @route DELETE api/ducation/:edu_id
+// @desc DELETE
+// @acces private
+
+router.delete(
+  "/education/:edu_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        //get remove index
+        let removeIndex = profile.education
+          .map(item => item.id)
+          .indexOf(req.params.edu_id);
+
+        //// splice out of array
+        //console.log(removeIndex);
+        profile.education.splice(removeIndex, 1);
+
+        //
+
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err =>
+        res.status(404).json({ msg: "error in deleting education" })
+      );
+  }
+);
+
+//// ruta privada
+// @route POST api/
+// @desc creates or updatethe new profile
+// @acces private
+
+router.post(
+  "/experience",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      let nextExp = {
+        title: req.body.title,
+        company: req.body.company,
+        location: req.body.location,
+        from: req.body.from,
+        to: req.body.to,
+        current: req.body.current,
+        description: req.body.description
+      };
+      //// add experience to an array
+      profile.experience.unshift(nextExp);
+      profile.save().then((profile = res.json(profile)));
+    });
+  }
+);
+
+router.post(
+  "/education",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      let nextEdu = {
+        school: req.body.school,
+        degree: req.body.degree,
+        fieldstudy: req.body.fieldstudy,
+        from: req.body.from,
+        to: req.body.to,
+        current: req.body.current,
+        description: req.body.description
+      };
+      //// add experience to an array
+      profile.education.unshift(nextEdu);
+      profile.save().then((profile = res.json(profile)));
+    });
+  }
+);
+
+//// ruta privada
+// @route DELETE api/profile
+// @desc  delete user and profile
+// @acces private
+
+router.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findByIdAndRemove({ user: req.user.id }).then(() => {
+      User.findByIdAndRemove({ _id: req.user.id }).then(() =>
+        res.json({ succes: true })
+      );
     });
   }
 );
