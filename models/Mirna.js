@@ -3,6 +3,7 @@ let Schema = mongoose.Schema;
 
 let mirnaSchema = new Schema(
   {
+    //gene: { type: Schema.Types.ObjectId, ref: "slimGO" }, // originaly string
     gene: { type: String, trim: true },
     gene_loc: String,
     consecutive: Number,
