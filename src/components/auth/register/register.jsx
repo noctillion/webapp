@@ -1,5 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import "./register.styles.css";
+//import queryString from "query-string";
+///import axios from "axios";
+import classnames from "classnames";
+import { connect } from "react-redux";
+import { registerUser } from "../../../actions/authActions";
 
 class Register extends Component {
   constructor() {
@@ -16,6 +23,12 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   /// cuando el boton recibe el valor lo pasa a values primero y despues se pasa al state del componente// despues toca usar bind para relacionar lo del cuadro y this
   /// target.name significa name email paswords para evitar escribirlos de a uno
   onChange(e) {
@@ -29,17 +42,34 @@ class Register extends Component {
     let newUser = {
       name: this.state.name,
       email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
+      password: this.state.password
+      //password2: this.state.password2
     };
     console.log(newUser);
+    ///// axios or fetch
+    ////probablemente se necesita el http ya que no se configuto en el proxy de la app
+    /*     axios
+      .post("/api/users/register", newUser)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err)); */
+
+    this.props.registerUser(newUser, this.props.history); // this.props.history se agrega para el enrutamiento con withrouter y las accciones.. el reenvio ejemplo
+
+    /*     fetch("http://localhost:4000/api/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }, // this line is important, if this content-type is not set it wont work
+      body: queryString.stringify(newUser)
+    }); */
+    //// se va pata authActions
   }
-  ///// axios or fetch
 
   render() {
+    let { errors } = this.state;
+    ///let { user } = this.props.auth;
     return (
       <div className="register_container">
         <div className="register">
+          {/* {user ? user.name : null} */}
           <div className="container">
             <div className="row">
               <div className="col-md-12 m-auto">
@@ -92,8 +122,8 @@ class Register extends Component {
                       className="form-control form-control-lg"
                       placeholder="Confirm Password"
                       name="password2"
-                      value={this.state.password2}
-                      onChange={this.onChange}
+                      //value={this.state.password2}
+                      //onChange={this.onChange}
                     />
                   </div>
                   <input type="submit" className="btn btn-block blue mt-2" />
@@ -107,4 +137,15 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+let mapStateToProps = state => ({
+  auth: state.auth, // this .auth viene de index.js en reducers folder
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));

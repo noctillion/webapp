@@ -23,7 +23,7 @@ class Mainpage extends React.Component {
                   miRNAs in A. thaliana
                 </p> */}
                 {/* <hr /> */}
-                <h3>Discover a scientist comunity</h3>
+                <h3>Document, share and discuss protocols and procedures</h3>
                 <Particles
                   params={{
                     particles: {
