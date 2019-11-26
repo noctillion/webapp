@@ -1,0 +1,22 @@
+.login_container {
+  display: flex;
+  border: solid black 1px;
+  padding: 50px;
+  justify-content: center;
+  background-color: rgb(223, 235, 223);
+  float: center;
+  color: solid black;
+  align-items: center;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 9%;
+  margin-bottom: 9%;
+}
+
+.blue {
+  background-color: rgb(35, 121, 28);
+}
+
+.text_t {
+  margin-bottom: 35px;
+}

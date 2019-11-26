@@ -1,0 +1,15 @@
+.register_container {
+  display: flex;
+  border: solid black 1px;
+  padding: 50px;
+  justify-content: flex-end;
+  background-color: rgb(223, 235, 223);
+  margin: 25px;
+  float: right;
+  color: solid black;
+  align-items: center;
+}
+
+.blue {
+  background-color: rgb(35, 121, 28);
+}

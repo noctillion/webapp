@@ -1,0 +1,49 @@
+img {
+  width: 100%;
+}
+
+.container {
+  color: aliceblue;
+  //margin-right: 50px;
+  //margin-left: 50px;
+}
+
+.landing {
+  position: relative;
+  //background: url("../../../public/images/image1.jpg") no-repeat;
+  //background-size: cover;
+  background-color: solid rgb(5, 5, 5); /// black
+  background-position: center;
+  height: 100vh;
+  margin-top: -24px;
+  //margin-bottom: -50px;
+  overflow: hidden;
+}
+
+.landing-inner {
+  padding-top: 30px;
+}
+
+.dark-overlay {
+  //background-color: rgba(0, 0, 0, 0.363);
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* .card-form {
+  opacity: 0.3;
+}
+ */
+.latest-profiles-img {
+  width: 40px;
+  height: 40px;
+}
+
+.form-control::placeholder {
+  ///color: #bbb !important;
+  color: rgb(255, 255, 255) !important;
+}
