@@ -1,1 +1,2 @@
 export let GET_ERRORS = "GET_ERRORS";
+export let SET_CURRENT_USER = "SET_CURRENT_USER";
