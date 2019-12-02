@@ -14,7 +14,24 @@ import { SET_CURRENT_USER } from "./types";
   };
 }; */
 
+/// register user usin axios
+
 export let registerUser = (userData, history) => dispatch => {
+  axios
+    .post("/api/users/register", userData)
+    //.then(res => console.log(res.data))
+    .then(res => history.push("/login"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+/// conexxion con fetch funciona
+
+/* export let registerUser = (userData, history) => dispatch => {
   fetch("http://localhost:4000/api/users/register", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" }, // this line is important, if this content-type is not set it wont work
@@ -29,7 +46,7 @@ export let registerUser = (userData, history) => dispatch => {
       })
     );
 };
-
+ */
 // login - get user token
 /* export let loginUser = userData => dispatch => {
   fetch("http://localhost:4000/api/users/login", {
@@ -57,7 +74,7 @@ export let registerUser = (userData, history) => dispatch => {
 
 export let loginUser = userData => dispatch => {
   axios
-    .post("http://localhost:4000/api/users/login", userData)
+    .post("/api/users/login", userData)
     .then(res => {
       /// save to local storage
       let { token } = res.data;
@@ -89,4 +106,15 @@ export let setCurrentUser = decoded => {
     type: SET_CURRENT_USER,
     payload: decoded
   };
+};
+
+//// logout
+
+export let logoutUser = () => dispatch => {
+  // remove token del local storage que se puso en App.js
+  localStorage.removeItem("jwtToken");
+  /// Romove auth header for future request
+  setAuthToken(false);
+  /// set current user to an object {} el cual cambiara isAuthenticated to false
+  dispatch(setCurrentUser({})); // este objeto vacio devuelve el initialState del user en AuthReducer.js
 };

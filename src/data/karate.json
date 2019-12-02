@@ -1,0 +1,327 @@
+{
+  "nodes": [
+    {
+      "Faction": 1,
+      "name": "Mr Hi",
+      "label": "H",
+      "color": 1,
+      "id": "Mr Hi"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 2",
+      "label": "2",
+      "color": 1,
+      "id": "Actor 2"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 3",
+      "label": "3",
+      "color": 1,
+      "id": "Actor 3"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 4",
+      "label": "4",
+      "color": 1,
+      "id": "Actor 4"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 5",
+      "label": "5",
+      "color": 1,
+      "id": "Actor 5"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 6",
+      "label": "6",
+      "color": 1,
+      "id": "Actor 6"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 7",
+      "label": "7",
+      "color": 1,
+      "id": "Actor 7"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 8",
+      "label": "8",
+      "color": 1,
+      "id": "Actor 8"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 9",
+      "label": "9",
+      "color": 2,
+      "id": "Actor 9"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 10",
+      "label": "10",
+      "color": 2,
+      "id": "Actor 10"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 11",
+      "label": "11",
+      "color": 1,
+      "id": "Actor 11"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 12",
+      "label": "12",
+      "color": 1,
+      "id": "Actor 12"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 13",
+      "label": "13",
+      "color": 1,
+      "id": "Actor 13"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 14",
+      "label": "14",
+      "color": 1,
+      "id": "Actor 14"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 15",
+      "label": "15",
+      "color": 2,
+      "id": "Actor 15"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 16",
+      "label": "16",
+      "color": 2,
+      "id": "Actor 16"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 17",
+      "label": "17",
+      "color": 1,
+      "id": "Actor 17"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 18",
+      "label": "18",
+      "color": 1,
+      "id": "Actor 18"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 19",
+      "label": "19",
+      "color": 2,
+      "id": "Actor 19"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 20",
+      "label": "20",
+      "color": 1,
+      "id": "Actor 20"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 21",
+      "label": "21",
+      "color": 2,
+      "id": "Actor 21"
+    },
+    {
+      "Faction": 1,
+      "name": "Actor 22",
+      "label": "22",
+      "color": 1,
+      "id": "Actor 22"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 23",
+      "label": "23",
+      "color": 2,
+      "id": "Actor 23"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 24",
+      "label": "24",
+      "color": 2,
+      "id": "Actor 24"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 25",
+      "label": "25",
+      "color": 2,
+      "id": "Actor 25"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 26",
+      "label": "26",
+      "color": 2,
+      "id": "Actor 26"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 27",
+      "label": "27",
+      "color": 2,
+      "id": "Actor 27"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 28",
+      "label": "28",
+      "color": 2,
+      "id": "Actor 28"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 29",
+      "label": "29",
+      "color": 2,
+      "id": "Actor 29"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 30",
+      "label": "30",
+      "color": 2,
+      "id": "Actor 30"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 31",
+      "label": "31",
+      "color": 2,
+      "id": "Actor 31"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 32",
+      "label": "32",
+      "color": 2,
+      "id": "Actor 32"
+    },
+    {
+      "Faction": 2,
+      "name": "Actor 33",
+      "label": "33",
+      "color": 2,
+      "id": "Actor 33"
+    },
+    {
+      "Faction": 2,
+      "name": "John A",
+      "label": "A",
+      "color": 2,
+      "id": "John A"
+    }
+  ],
+  "links": [
+    { "source": "Mr Hi", "target": "Actor 2", "weight": 4 },
+    { "source": "Mr Hi", "target": "Actor 3", "weight": 5 },
+    { "source": "Mr Hi", "target": "Actor 4", "weight": 3 },
+    { "source": "Mr Hi", "target": "Actor 5", "weight": 3 },
+    { "source": "Mr Hi", "target": "Actor 6", "weight": 3 },
+    { "source": "Mr Hi", "target": "Actor 7", "weight": 3 },
+    { "source": "Mr Hi", "target": "Actor 8", "weight": 2 },
+    { "source": "Mr Hi", "target": "Actor 9", "weight": 2 },
+    { "source": "Mr Hi", "target": "Actor 11", "weight": 2 },
+    { "source": "Mr Hi", "target": "Actor 12", "weight": 3 },
+    { "source": "Mr Hi", "target": "Actor 13", "weight": 1 },
+    { "source": "Mr Hi", "target": "Actor 14", "weight": 3 },
+    { "source": "Mr Hi", "target": "Actor 18", "weight": 2 },
+    { "source": "Mr Hi", "target": "Actor 20", "weight": 2 },
+    { "source": "Mr Hi", "target": "Actor 22", "weight": 2 },
+    { "source": "Mr Hi", "target": "Actor 32", "weight": 2 },
+    { "source": "Actor 2", "target": "Actor 3", "weight": 6 },
+    { "source": "Actor 2", "target": "Actor 4", "weight": 3 },
+    { "source": "Actor 2", "target": "Actor 8", "weight": 4 },
+    { "source": "Actor 2", "target": "Actor 14", "weight": 5 },
+    { "source": "Actor 2", "target": "Actor 18", "weight": 1 },
+    { "source": "Actor 2", "target": "Actor 20", "weight": 2 },
+    { "source": "Actor 2", "target": "Actor 22", "weight": 2 },
+    { "source": "Actor 2", "target": "Actor 31", "weight": 2 },
+    { "source": "Actor 3", "target": "Actor 4", "weight": 3 },
+    { "source": "Actor 3", "target": "Actor 8", "weight": 4 },
+    { "source": "Actor 3", "target": "Actor 9", "weight": 5 },
+    { "source": "Actor 3", "target": "Actor 10", "weight": 1 },
+    { "source": "Actor 3", "target": "Actor 14", "weight": 3 },
+    { "source": "Actor 3", "target": "Actor 28", "weight": 2 },
+    { "source": "Actor 3", "target": "Actor 29", "weight": 2 },
+    { "source": "Actor 3", "target": "Actor 33", "weight": 2 },
+    { "source": "Actor 4", "target": "Actor 8", "weight": 3 },
+    { "source": "Actor 4", "target": "Actor 13", "weight": 3 },
+    { "source": "Actor 4", "target": "Actor 14", "weight": 3 },
+    { "source": "Actor 5", "target": "Actor 7", "weight": 2 },
+    { "source": "Actor 5", "target": "Actor 11", "weight": 3 },
+    { "source": "Actor 6", "target": "Actor 7", "weight": 5 },
+    { "source": "Actor 6", "target": "Actor 11", "weight": 3 },
+    { "source": "Actor 6", "target": "Actor 17", "weight": 3 },
+    { "source": "Actor 7", "target": "Actor 17", "weight": 3 },
+    { "source": "Actor 9", "target": "Actor 31", "weight": 3 },
+    { "source": "Actor 9", "target": "Actor 33", "weight": 3 },
+    { "source": "Actor 9", "target": "John A", "weight": 4 },
+    { "source": "Actor 10", "target": "John A", "weight": 2 },
+    { "source": "Actor 14", "target": "John A", "weight": 3 },
+    { "source": "Actor 15", "target": "Actor 33", "weight": 3 },
+    { "source": "Actor 15", "target": "John A", "weight": 2 },
+    { "source": "Actor 16", "target": "Actor 33", "weight": 3 },
+    { "source": "Actor 16", "target": "John A", "weight": 4 },
+    { "source": "Actor 19", "target": "Actor 33", "weight": 1 },
+    { "source": "Actor 19", "target": "John A", "weight": 2 },
+    { "source": "Actor 20", "target": "John A", "weight": 1 },
+    { "source": "Actor 21", "target": "Actor 33", "weight": 3 },
+    { "source": "Actor 21", "target": "John A", "weight": 1 },
+    { "source": "Actor 23", "target": "Actor 33", "weight": 2 },
+    { "source": "Actor 23", "target": "John A", "weight": 3 },
+    { "source": "Actor 24", "target": "Actor 26", "weight": 5 },
+    { "source": "Actor 24", "target": "Actor 28", "weight": 4 },
+    { "source": "Actor 24", "target": "Actor 30", "weight": 3 },
+    { "source": "Actor 24", "target": "Actor 33", "weight": 5 },
+    { "source": "Actor 24", "target": "John A", "weight": 4 },
+    { "source": "Actor 25", "target": "Actor 26", "weight": 2 },
+    { "source": "Actor 25", "target": "Actor 28", "weight": 3 },
+    { "source": "Actor 25", "target": "Actor 32", "weight": 2 },
+    { "source": "Actor 26", "target": "Actor 32", "weight": 7 },
+    { "source": "Actor 27", "target": "Actor 30", "weight": 4 },
+    { "source": "Actor 27", "target": "John A", "weight": 2 },
+    { "source": "Actor 28", "target": "John A", "weight": 4 },
+    { "source": "Actor 29", "target": "Actor 32", "weight": 2 },
+    { "source": "Actor 29", "target": "John A", "weight": 2 },
+    { "source": "Actor 30", "target": "Actor 33", "weight": 4 },
+    { "source": "Actor 30", "target": "John A", "weight": 2 },
+    { "source": "Actor 31", "target": "Actor 33", "weight": 3 },
+    { "source": "Actor 31", "target": "John A", "weight": 3 },
+    { "source": "Actor 32", "target": "Actor 33", "weight": 4 },
+    { "source": "Actor 32", "target": "John A", "weight": 4 },
+    { "source": "Actor 33", "target": "John A", "weight": 5 }
+  ],
+  "attributes": {
+    "name": "Zachary's karate club network",
+    "Citation": "Wayne W. Zachary. An Information Flow Model for Conflict and Fission in Small Groups. Journal of Anthropological Research Vol. 33, No. 4 452-473",
+    "Author": "Wayne W. Zachary"
+  }
+}

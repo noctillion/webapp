@@ -2,6 +2,7 @@ let express = require("express");
 let app = express();
 let mongoose = require("mongoose");
 let bodyParser = require("body-parser");
+let cors = require("cors");
 //let mongoConnect = require("./util/database").mongoConnect;
 let dbp = require("./util/keys").mongoURI;
 let passport = require("passport");
@@ -16,6 +17,8 @@ let go = require("./routes/api/go");
 
 reloadMagic(app);
 
+/// cors
+app.use(cors());
 // bodyparser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

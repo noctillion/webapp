@@ -3,6 +3,13 @@ let router = express.Router();
 let mongoose = require("mongoose");
 let passport = require("passport");
 
+// load validation
+let validateProfileInput = require("../../validation/profile");
+// load validation
+let validateExperienceInput = require("../../validation/experience");
+// load validation
+let validateEducationInput = require("../../validation/education");
+
 // loading model frofile
 let Profile = require("../../models/Profile");
 
@@ -29,8 +36,8 @@ router.get(
   (req, res) => {
     let errors = {};
 
-    Profile.findOne({ user: req.user.id }) //
-      .populate("user", ["name", "avatar"])
+    Profile.findOne({ user: req.user.id }) /// esto es lo que quiere hacer match
+      .populate("user", ["name", "avatar"]) // populate permite recuperar mas campos de user
       .then(profile => {
         if (!profile) {
           errors.nonprofile = "There is not profile for the user";
@@ -38,7 +45,7 @@ router.get(
         }
         res.json(profile);
       })
-      .catch(err => res.status(404).json(errors)); // pilas aqui lo cambie err to errors
+      .catch(err => res.status(404).json(err)); // pilas aqui lo cambie err to errors
   }
 );
 
@@ -68,7 +75,7 @@ router.get("/all", (req, res) => {
 // @desc get current profile by handle
 // @acces public
 /// permite ver el perfil de la gente
-
+/* 
 router.get("/handle/:handle", (req, res) => {
   let errors = {};
 
@@ -81,10 +88,53 @@ router.get("/handle/:handle", (req, res) => {
       }
       res.json(profile);
     })
-    .catch(err =>
-      res.status(404).json({ profile: "There is not profile for this user" })
-    );
+    .catch(err => res.status(404).json(err));
+}); */
+
+//// ruta publica
+// @route GET api/profile/handle/:handle
+// @desc get current profile by handle
+// @acces public
+/// permite ver el perfil de la gente
+
+//// funcion get handle redisenada .. funciona!!
+// evita el error de error not handled
+
+router.get("/handle/:handle", async (req, res) => {
+  errors = {};
+  try {
+    let profile = await Profile.findOne({
+      handle: req.params.handle
+    }).populate("user", ["name", "avatar"]);
+
+    if (profile) {
+      res.json(profile);
+    } else {
+      errors.nonprofile = "There is not profile fot this user";
+      throw res.status(404).json(errors);
+    }
+  } catch (err) {
+    err => res.status(404).json(err);
+  }
 });
+
+/* 
+router.get("/handle/:handle", (req, res) => {
+  let errors = {};
+
+  Profile.findOne({ handle: req.params.handle })
+    .populate("user", ["name", "avatar"])
+    .then(profile => {
+      if (!profile) {
+        errors.nonprofile = "There is not profile fot this user";
+        res.status(404).json(errors);
+      }
+      res.json(profile);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
+///// */
 
 //// ruta publica
 // @route GET api/profile/user/:user_id
@@ -105,7 +155,7 @@ router.get("/user/:user_id", (req, res) => {
       res.json(profile);
     })
     .catch(err =>
-      res.status(404).json({ profile: "There is not profile for this user" })
+      res.status(404).json({ profile: "there is not profile for this user" })
     );
 });
 
@@ -118,6 +168,15 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    let { errors, isValid } = validateProfileInput(req.body);
+    //console.log("aqui");
+    // check validation
+    if (!isValid) {
+      // return errors with 400 status
+
+      return res.status(400).json(errors); /// el error era status deconocido por no ponerle el 400
+    }
+
     /// get fields
     let profileFields = {};
     profileFields.user = req.user.id; /// tiene avatar name y email
@@ -142,7 +201,7 @@ router.post(
     if (req.body.githubusername) {
       profileFields.githubusername = req.body.githubusername;
     }
-    /////skills is and array.. es diferente
+    /////skills is and array.. es diferente toca split primero
 
     if (typeof req.body.skills !== "undefined") {
       profileFields.skills = req.body.skills.split(",");
@@ -183,7 +242,8 @@ router.post(
         /// check if handle exsists
         Profile.findOne({ handle: profileFields.handle }).then(profile => {
           if (profile) {
-            return res.status(400).json({ msg: " That handle exists" }); /// cuadrar error aqui 019 video
+            errors.handle = "That handle already exists";
+            res.status(400).json(errors); /// cuadrar error aqui 019 video
           }
 
           /// save profile
@@ -263,6 +323,13 @@ router.post(
   "/experience",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    let { errors, isValid } = validateExperienceInput(req.body);
+    if (!isValid) {
+      // return errors with 400 status
+
+      return res.status(400).json(errors); /// el error era status deconocido por no ponerle el 400
+    }
+
     Profile.findOne({ user: req.user.id }).then(profile => {
       let nextExp = {
         title: req.body.title,
@@ -284,6 +351,12 @@ router.post(
   "/education",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    let { errors, isValid } = validateEducationInput(req.body);
+    if (!isValid) {
+      // return errors with 400 status
+
+      return res.status(400).json(errors); /// el error era status deconocido por no ponerle el 400
+    }
     Profile.findOne({ user: req.user.id }).then(profile => {
       let nextEdu = {
         school: req.body.school,

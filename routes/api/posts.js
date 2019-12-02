@@ -7,6 +7,8 @@ let Post = require("../../models/Post");
 
 let Profile = require("../../models/Profile");
 
+let validatePostInput = require("../../validation/post");
+
 // @route GET api/posts/test
 // @desc test post route
 // @acces Public
@@ -46,6 +48,12 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    let { errors, isValid } = validatePostInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
     let newPost = new Post({
       text: req.body.text,
       name: req.body.name,
@@ -68,6 +76,7 @@ router.delete(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Post.findById(req.params.id)
         .then(post => {
+          // esto verifica si el post es del owner
           if (post.user.toString() !== req.user.id) {
             return res
               .status(401)
@@ -168,6 +177,12 @@ router.post(
   "/comment/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    let { errors, isValid } = validatePostInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
     Post.findById(req.params.id)
       .then(post => {
         let newComment = {

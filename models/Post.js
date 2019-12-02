@@ -1,14 +1,17 @@
 let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
-let postSchema = new Schema(
+let PostSchema = new Schema(
   {
     /// tenemos el user asociado con los posts
     user: {
       type: Schema.Types.ObjectId,
       ref: "users"
     },
-    text: String,
+    text: {
+      type: String,
+      required: true
+    },
     name: String,
     avatar: String,
     likes: [
@@ -29,19 +32,20 @@ let postSchema = new Schema(
         name: String,
         avatar: String,
         date: {
-          type: Date
+          type: Date,
+          default: Date.now
         }
       }
     ],
     date: {
-      type: Date
-      //default: true
+      type: Date,
+      default: Date.now
     }
   },
   { collection: "post" }
 );
 
-let Post = mongoose.model("post", postSchema);
+let Post = mongoose.model("post", PostSchema);
 
 module.exports = Post;
 

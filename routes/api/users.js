@@ -11,6 +11,10 @@ let passport = require("passport");
 
 let validateRegisterInput = require("../../validation/register");
 
+/// load login validation
+
+let validateLoginInput = require("../../validation/login");
+
 // @route GET api/users/test
 // @desc test post route
 // @acces Public
@@ -34,7 +38,8 @@ router.post("/register", (req, res) => {
 
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+      errors.email = "Email already exists";
+      return res.status(400).json(errors);
     } else {
       let avatar = gravatar.url(req.body.email, {
         s: "200", // size
@@ -44,7 +49,8 @@ router.post("/register", (req, res) => {
       let newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: req.body.password, /// password2
+        password: req.body.password2,
         avatar: avatar,
         date: req.body.date
       });
@@ -69,14 +75,19 @@ router.post("/register", (req, res) => {
 // @access Public
 
 router.post("/login", (req, res) => {
+  let { errors, isValid } = validateLoginInput(req.body);
+  //check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   let email = req.body.email;
   let password = req.body.password;
   User.findOne({ email: email }).then(user => {
     /// este user tiene toda la informacion en mongo db.. puede ser cualquier nombre
     if (!user) {
-      return res
-        .status(400)
-        .json({ email: "Email doesnt exist user not found" });
+      errors.email = "Email doesnt exist user not found";
+      return res.status(400).json(errors);
     }
     bcrypt.compare(password, user.password).then(Matched => {
       if (Matched) {
@@ -88,7 +99,8 @@ router.post("/login", (req, res) => {
           res.json({ msg: "success token", token: "Bearer " + token });
         });
       } else {
-        return res.status(400).json({ msg: "not succeded" });
+        errors.password = "Password incorrect!!";
+        return res.status(400).json(errors);
       }
     });
   });

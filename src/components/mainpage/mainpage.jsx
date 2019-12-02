@@ -3,10 +3,17 @@ import { Link } from "react-router-dom";
 import Particles from "react-particles-js";
 //import Particles from "./particles.jsx";
 import "./mainpage.styles.scss";
+//// para parar props aqui se trae redux.. lo enumero para claridad
+// 1 impt shortcut vs
+import PropTypes from "prop-types"; // esto es para poder mapStateToProps
+import { connect } from "react-redux";
 
 class Mainpage extends React.Component {
-  constructor(props) {
-    super(props);
+  ///// esto verifica que el usuario este autenticado, si es cierto redirecciona la url pagina al link que se especifica.. esto evita que la gente pase de paginas usando /
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   render() {
@@ -63,4 +70,18 @@ class Mainpage extends React.Component {
   }
 }
 
-export default Mainpage;
+//4
+
+Mainpage.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+// 3 esto trate auth al state
+let mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps)(Mainpage);
+///export default Mainpage;
+// 2 incluir connect en el export
+// aqui se incluye mapStateToProps sin actions.. solo para tener acceso a auth

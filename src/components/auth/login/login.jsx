@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
@@ -19,9 +20,17 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  ///// esto verifica que el usuario este autenticado, si es cierto redirecciona la url pagina al link que se especifica.. esto evita que la gente pase de paginas usando /
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAutenticated) {
-      this.props.history.push("http://localhost:4000/mirna");
+    if (nextProps.auth.isAuthenticated) {
+      console.log("aqui", nextProps.auth.isAuthenticated);
+      this.props.history.push("/api/dashboard"); /// dashboard aun no existe
     }
 
     if (nextProps.errors) {
@@ -40,7 +49,7 @@ class Login extends Component {
       password: this.state.password
     };
     console.log(userData);
-    this.props.loginUser(userData);
+    this.props.loginUser(userData); /// esto llama la accion loginUser de Authactions.jss
   }
 
   render() {
@@ -111,4 +120,4 @@ let mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser })(withRouter(Login));

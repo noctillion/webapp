@@ -16,7 +16,7 @@ let profileSchema = new Schema(
     website: String,
     location: String,
     bio: String,
-    status: String,
+    status: String, /// is originaly required
     skills: {
       type: [String]
     },
