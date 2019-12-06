@@ -11,6 +11,8 @@ import {
 
 import Script from "react-load-script";
 
+//import CsvUpload from "../csvupload/CsvUpload.jsx";
+
 //import { Helmet } from "react-helmet";
 
 /* class Mirna extends React.Component {

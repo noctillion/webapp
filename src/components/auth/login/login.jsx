@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { loginUser } from "../../../actions/authActions";
+import TextFieldGroup from "../../common/TextFieldGroup.jsx";
 import "./login.style.css";
 
 class Login extends Component {
@@ -30,7 +31,7 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       console.log("aqui", nextProps.auth.isAuthenticated);
-      this.props.history.push("/api/dashboard"); /// dashboard aun no existe
+      this.props.history.push("/dashboard"); /// dashboard aun no existe.. decia /api/dashboard
     }
 
     if (nextProps.errors) {
@@ -68,7 +69,16 @@ class Login extends Component {
                   Sign in to your DevConnector account
                 </p> */}
                 <form onSubmit={this.onSubmit}>
-                  <div className="form-group">
+                  <a>Email</a>
+                  <TextFieldGroup
+                    placeholder="Email Address"
+                    name="email"
+                    type="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    error={errors.email}
+                  />
+                  {/*                   <div className="form-group">
                     <input
                       type="email"
                       className={classnames("form-control form-control-lg", {
@@ -82,8 +92,19 @@ class Login extends Component {
                     {errors.email && (
                       <div className="invalid-feedback">{errors.email}</div>
                     )}
-                  </div>
-                  <div className="form-group">
+                  </div> */}
+                  <a>Password</a>
+
+                  <TextFieldGroup
+                    placeholder="Password"
+                    name="password"
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    error={errors.password}
+                  />
+
+                  {/*                 <div className="form-group">
                     <input
                       type="password"
                       className={classnames("form-control form-control-lg", {
@@ -97,7 +118,7 @@ class Login extends Component {
                     {errors.password && (
                       <div className="invalid-feedback">{errors.password}</div>
                     )}
-                  </div>
+                  </div> */}
                   <input type="submit" className="btn btn-block blue mt-2" />
                 </form>
               </div>

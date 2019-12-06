@@ -1,0 +1,43 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Neza",
+      "type": "ENFP",
+      "type_name": "Campaigner",
+      "group": "Diplomats",
+      "group_id": 1,
+      "image": "neza.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Natasa",
+      "type": "INFJ",
+      "type_name": "Advocate",
+      "group": "Diplomats",
+      "group_id": 1,
+      "image": "neza.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Rasto",
+      "type": "ESFP",
+      "type_name": "Entertainer",
+      "group": "Explorers",
+      "group_id": 2,
+      "image": "neza.jpg"
+    }
+  ],
+  "edges": [
+    {
+      "source": 1,
+      "target": 2,
+      "value": 2
+    },
+    {
+      "source": 1,
+      "target": 3,
+      "value": 2
+    }
+  ]
+}

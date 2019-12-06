@@ -5,6 +5,7 @@ import Separator from "../separator/separator.jsx";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { clearCurrentProfile } from "../../actions/profileActions";
 /////
 import "./navbar.styles.scss";
 
@@ -12,12 +13,14 @@ class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
+    this.props.clearCurrentProfile();
+    console.log("aquidespuesde logout primero", this.props);
 
     /// direccionar a mainpage cuando el usuario logout
   }
 
   render() {
-    console.log("aqui2", this.props);
+    console.log("despuesderender", this.props);
 
     let { isAuthenticated, user } = this.props.auth;
 
@@ -98,4 +101,6 @@ let mapStateToProps = state => ({
 });
 
 //export default Navbar;
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
+  Navbar
+);

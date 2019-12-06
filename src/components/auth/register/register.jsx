@@ -82,13 +82,14 @@ class Register extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 m-auto">
-                <h2 className="display-7 text-center text-dark">
+                <h3 className="display-7 text-center text-dark">
                   Create a new account
-                </h2>
-                <p className="lead text-center text-secondary">
+                </h3>
+                {/*                 <p className="lead text-center text-secondary">
                   It is also free and allways will be
-                </p>
+                </p> */}
                 <form onSubmit={this.onSubmit}>
+                  <a>Name</a>
                   <div className="form-group">
                     <input
                       type="text"
@@ -109,6 +110,7 @@ class Register extends Component {
                     )}
                   </div>
                   <div className="form-group">
+                    <a>Email</a>
                     <input
                       type="email"
                       className={classnames("form-control form-control-lg", {
@@ -128,6 +130,7 @@ class Register extends Component {
                     </small>
                   </div>
                   <div className="form-group">
+                    <a>Password</a>
                     <input
                       type="password"
                       className={classnames("form-control form-control-lg", {
@@ -142,6 +145,7 @@ class Register extends Component {
                       <div className="invalid-feedback">{errors.password}</div>
                     )}
                   </div>
+                  <a>Confirm password</a>
                   <div className="form-group">
                     <input
                       type="password"
