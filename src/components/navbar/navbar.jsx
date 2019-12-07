@@ -12,9 +12,11 @@ import "./navbar.styles.scss";
 class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
-    this.props.logoutUser();
     this.props.clearCurrentProfile();
-    console.log("aquidespuesde logout primero", this.props);
+    this.props.logoutUser();
+
+    ///console.log("aquidespuesde logout primero", this.props);
+    window.location.href = "/"; /// TODO depronto es mejor modificando el state
 
     /// direccionar a mainpage cuando el usuario logout
   }
