@@ -9,6 +9,8 @@ import { clearCurrentProfile } from "./actions/profileActions";
 import { Provider } from "react-redux"; /// wraps everything provides the store
 import store from "./store.js";
 
+import PrivateRoute from "./components/common/PrivateRoutes.jsx";
+
 import Mainpage from "./components/mainpage/mainpage.jsx";
 import Navbar from "./components/navbar/navbar.jsx";
 import Register from "./components/auth/register/register.jsx";
@@ -17,6 +19,7 @@ import Mirna from "./components/mirna/mirna.jsx";
 import Rcomp from "./components/rcomp/rcomp.jsx";
 import Separator from "./components/separator/separator.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
+import CreateProfile from "./components/create-profile/CreateProfile.jsx";
 
 import React_sigma_vis from "./components/react_sigma_vis/react_sigma_vis.jsx";
 import React_sigma_vis2 from "./components/react_sigma_vis2/react_sigma_vis.jsx";
@@ -62,14 +65,23 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Separator />
+
+            <Route exact path="/" component={Mainpage} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/mirna" component={Mirna} />
+            <Route exact path="/rcomp" component={Rcomp} />
             <Switch>
-              <Route exact path="/" component={Mainpage} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/mirna" component={Mirna} />
-              <Route exact path="/rcomp" component={Rcomp} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
+            </Switch>
+            {/* aqui el switch es diferente */}
 
             <React_sigma_vis />
             <React_sigma_vis2 />
