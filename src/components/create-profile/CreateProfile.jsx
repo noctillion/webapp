@@ -25,8 +25,22 @@ class CreateProfile extends Component {
       twitter: "",
       errors: {}
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    console.log("submit profile");
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
+    let { errors } = this.state;
     return (
       <div className="create-profile">
         <div className="container">
@@ -36,6 +50,17 @@ class CreateProfile extends Component {
               <p className="lead text-center">
                 Give some information for your profile
               </p>
+              <small className="d-block pb-3">* = required field</small>
+              <form onSubmit={this.onSubmit}>
+                <TextFieldGroup
+                  placeholder="* Profile Nickname"
+                  name="handle"
+                  value={this.state.handle}
+                  onChange={this.onChange}
+                  error={errors.handle}
+                  info="Select a unique nickname to manage your MyLabBook account"
+                />
+              </form>
             </div>
           </div>
         </div>
