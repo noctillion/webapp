@@ -5,7 +5,6 @@ library(pcr)
 library(ggplot2)
 library(cowplot)
 library(jsonlite)
-library(mongolite)
 
 
 #* @filter cors
@@ -301,11 +300,5 @@ de = sigmajs() %>% # initialise
 print(de)
 }
 
-####### mongolite
 
-m <- mongo(collection='users', url = "mongodb://julian:Julian12345@ds155243.mlab.com:55243/mirna")
 
-print(m)
-m$count()
-
-### aqui funcion para recuperar datos de r

@@ -3,6 +3,8 @@ let app = express();
 let mongoose = require("mongoose");
 let bodyParser = require("body-parser");
 //let multer = require("multer");
+//let path = require("path");
+//let multer = require("multer");
 let cors = require("cors");
 //let mongoConnect = require("./util/database").mongoConnect;
 let dbp = require("./util/keys").mongoURI;
@@ -17,6 +19,21 @@ let mirna = require("./routes/api/mirna");
 let go = require("./routes/api/go");
 
 reloadMagic(app);
+
+/* ///multer image
+let storage = multer.diskStorage({
+  destination: "./public/images",
+  filename: function(req, file, cb){
+     cb(null,"IMAGE-" + Date.now() + path.extname(file.originalname));
+  }
+});
+
+let upload = multer({
+  storage: storage,
+  limits:{fileSize: 1000000},
+}).single("myImage");
+
+ */
 
 /// cors
 app.use(cors());

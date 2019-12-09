@@ -1,0 +1,7 @@
+.box1 {
+  border: solid black 1px;
+  padding: 20px;
+  font-family: fantasy;
+  background-color: rgb(233, 233, 233);
+  text-justify: inter-word;
+}

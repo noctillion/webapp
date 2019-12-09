@@ -30,7 +30,25 @@ export let getCurrentProfile = () => dispatch => {
     );
 };
 
+///// create profile
+
+//// ejemplo de redux
+///1)
 // profile loading
+
+export let createProfile = (profileData, history) => dispatch => {
+  axios
+    .post("/api/profile", profileData)
+    .then(res => history.push("/dasboard")) //// aqui se redirecciona despues de mandarlo
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+///profile loading
 
 export let setProfileLoading = () => {
   return {
