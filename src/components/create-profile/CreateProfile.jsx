@@ -109,7 +109,7 @@ class CreateProfile extends Component {
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
-                  info="Select a nickname to manage your MyLabBook account"
+                  info="Select a nickname to manage your qPCRexpress account"
                 />
                 <SelectListGroup
                   placeholder="Status"

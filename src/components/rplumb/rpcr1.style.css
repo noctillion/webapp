@@ -4,4 +4,11 @@
   font-family: fantasy;
   background-color: rgb(233, 233, 233);
   text-justify: inter-word;
+  margin-top: -26px;
+}
+
+.plot {
+  display: flex;
+  border: solid black 1px;
+  padding: 20px;
 }

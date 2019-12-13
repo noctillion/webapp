@@ -3,7 +3,8 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   GET_ERRORS,
-  CLEAR_CURRENT_PROFILE
+  CLEAR_CURRENT_PROFILE,
+  SET_CURRENT_USER
 } from "./types";
 
 //
@@ -46,6 +47,28 @@ export let createProfile = (profileData, history) => dispatch => {
         payload: err.response.data
       })
     );
+};
+
+/// borrar cuenta y perfil
+// se usa dispatch por que se esta haciento un request a la base de datos
+
+export let deleteAccount = () => dispatch => {
+  if (window.confirm("This action will delete your qPCRexpress account")) {
+    axios
+      .delete("/api/profile")
+      .then(res =>
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: {}
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      );
+  }
 };
 
 ///profile loading

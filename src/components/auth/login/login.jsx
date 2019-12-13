@@ -63,7 +63,7 @@ class Login extends Component {
             <div className="row">
               <div className="col-md-12 m-auto">
                 <h3 className="display-7 text-center text-dark text_t">
-                  Log into MyLabBook
+                  Log into qPCRexpress
                 </h3>
                 {/*                 <p className="lead text-center">
                   Sign in to your DevConnector account

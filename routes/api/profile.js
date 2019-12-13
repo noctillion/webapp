@@ -379,7 +379,7 @@ router.post(
 // @desc  delete user and profile
 // @acces private
 
-router.delete(
+/* router.delete(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -389,6 +389,17 @@ router.delete(
       );
     });
   }
-);
+); */
 
+router.delete(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findOneAndRemove({ _id: req.user.id }).then(() =>
+        res.json({ succes: true })
+      );
+    });
+  }
+);
 module.exports = router;

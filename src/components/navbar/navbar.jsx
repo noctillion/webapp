@@ -29,6 +29,11 @@ class Navbar extends Component {
     let authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+          <Link className="nav-link" to="/rplumb">
+            qPCR
+          </Link>
+        </li>
+        <li className="nav-item">
           <a
             href="#"
             onClick={this.onLogoutClick.bind(this)}
@@ -66,7 +71,7 @@ class Navbar extends Component {
           <Link className="navbar-brand" to="/">
             {" "}
             {/* href="landing.html" */}
-            MyLabBook
+            qPCRexpress
           </Link>
           <button
             className="navbar-toggler"

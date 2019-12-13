@@ -2,14 +2,20 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profileActions";
+import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import CustomButton from "../custbutton/custom-button.component.jsx";
 ///import Spinner from "../common/Spinner.jsx";
+import ProfileActions from "./ProfileAction.jsx";
+import "./dashboard.style.css";
 
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
     //console.log("current profile en dash", this.props.getCurrentProfile());
+  }
+
+  onDeleteClick(e) {
+    this.props.deleteAccount(); /// esta accion se hace en profile actions y se llama aqui
   }
 
   render() {
@@ -26,9 +32,22 @@ class Dashboard extends Component {
     } else {
       /// verificar si el usuario logueado tiene profile si no ofrecer opcion
       if (Object.keys(profile).length > 0) {
-        dashboardContent = <h4> TODO display profile</h4>;
-      }
-      if (Object.keys(profile).length === 0) {
+        dashboardContent = (
+          <div>
+            <p className="lead text-muted">
+              Welcome<Link to={`/profile/${profile.handle}`}> {user.name}</Link>{" "}
+            </p>
+            <ProfileActions />
+            <div style={{ marginBottom: "50px" }}></div>
+            <button
+              onClick={this.onDeleteClick.bind(this)}
+              className="btn btn-danger"
+            >
+              Delete account
+            </button>
+          </div>
+        );
+      } else {
         dashboardContent = (
           <div>
             <p className="lead text-muted">Welcome {user.name} </p>
@@ -55,7 +74,7 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="dashboard">
+      <div className="dashboard dashcont">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -71,6 +90,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
@@ -80,4 +100,6 @@ let mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+  Dashboard
+);

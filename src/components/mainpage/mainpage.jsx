@@ -23,16 +23,17 @@ class Mainpage extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">MyLabBook</h1>
+                <h1 className="display-3 mb-4">qPCRexpress</h1>
                 {/*                 <p className="lead">
                   {" "}
                   Explore the interspecific predicted regulation by insect
                   miRNAs in A. thaliana
                 </p> */}
                 {/* <hr /> */}
-                <h3>
-                  Document and share your protocols analysis and procedures
-                </h3>
+                <h3>Analyze your qPCR results on line</h3>
+                <h4>
+                  Powered by <mark className="red">R</mark>
+                </h4>
                 <Particles
                   params={{
                     particles: {

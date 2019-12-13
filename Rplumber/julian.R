@@ -6,7 +6,12 @@ library(ggplot2)
 library(cowplot)
 library(jsonlite)
 library(mongolite)
-
+library(readr)
+library(Rook)
+library(dplyr)
+library(stringi)
+library(readr)
+library(heatmaply)
 
 #* @filter cors
 cors <- function(res) {
@@ -29,6 +34,155 @@ normalMean <- function(samples=10){
 addTwo <- function(a, b){
   as.numeric(a) + as.numeric(b)
 }
+
+
+#* parse csv file
+#* @param req the request object
+#* @post /file
+function(req) {
+  file <- Rook::Multipart$parse(req)$req$tempfile
+  result <- read.csv(file)
+  result
+}
+
+
+#' Plot a histogram
+#' @png
+#* @param a the request object
+#* @post /plot22
+de <- function(a){
+  m <- mongo(collection='csv', url = "mongodb://julian:Julian12345@ds155243.mlab.com:55243/mirna")
+  alldata <- m$find(query='{"csvFile": "csvFile-1576219173979.csv"}', fields = '{"csvFile":true, "_id":false}')
+  dr <- alldata$csvFile
+  
+  if (stri_isempty(dr)){
+    print("no dr")
+  }else{
+    ct33 <- readr::read_csv(a)
+    py<- ggplot() + geom_line(aes(y = c_myc, x = GAPDH),
+                              data = ct33)
+    print(py)
+    
+    print("chau")
+    
+  }
+  }
+
+
+#' Plot a histogram
+#' @png
+#* @post /plot23
+de <- function(file){
+    ct33<-readr::read_csv(file)
+    py<- ggplot() + geom_line(aes(y = c_myc, x = GAPDH),
+                              data = ct33)
+    print(py)
+    
+    print("chau")
+    
+  }
+##### este sirve bn 
+
+#' Plot a histogram
+#' @png
+#* @param a the request object
+#* @post /plot24
+der <- function(file){
+  m <- mongo(collection='csv', url = "mongodb://julian:Julian12345@ds155243.mlab.com:55243/mirna")
+  alldata <- m$find(query='{}')
+  print("hol1")
+  arr <- dplyr::pull(alldata, csvFile)
+  print("hol2")
+  matches <- regmatches(arr, gregexpr("[[:digit:]]+", arr))
+  print("hol3")
+  unl <- array(unlist(matches))
+  print(unl)
+  print(file)
+Sys.sleep(0.5)
+  if (file %in% unl){
+    print("hola")
+      ##fl <- system.file('extdata', 'ct2.csv', package = 'pcr')
+    var <- paste0('csvFile-',file,'.csv')
+    print(var)
+      ct33<-readr::read_csv(var)
+      py<- ggplot() + geom_line(aes(y = c_myc, x = GAPDH),
+                                data = ct33)
+      print(py)
+  }else{
+    print("chau")
+}
+}
+
+
+
+
+
+
+#' Plot a histogram
+#' @png
+#* @get /plot27
+tyu <- function(){
+  data(mtcars)
+  r <- cor(mtcars)
+  ## We use this function to calculate a matrix of p-values from correlation tests
+  ## https://stackoverflow.com/a/13112337/4747043
+  cor.test.p <- function(x){
+    FUN <- function(x, y) cor.test(x, y)[["p.value"]]
+    z <- outer(
+      colnames(x), 
+      colnames(x), 
+      Vectorize(function(i,j) FUN(x[,i], x[,j]))
+    )
+    dimnames(z) <- list(colnames(x), colnames(x))
+    z
+  }
+  p <- cor.test.p(mtcars)
+  
+  heatmaply_cor(
+    r,
+    node_type = "scatter",
+    point_size_mat = -log10(p), 
+    point_size_name = "-log10(p-value)",
+    label_names = c("x", "y", "Correlation")
+  )
+  
+  
+}
+
+
+
+
+
+
+
+
+
+#' Plot a histogram
+#' @png
+#* @param a the request object
+#* @post /plot25
+de <- function(a){
+  m <- mongo(collection='csv', url = "mongodb://julian:Julian12345@ds155243.mlab.com:55243/mirna")
+  alldata <- m$find(query='{}')
+  print("hol1")
+  arr <- dplyr::pull(alldata, csvFile)
+  Sys.sleep(0.5)
+  print("hol2")
+  var <- grep(a, arr, value=TRUE)
+  Sys.sleep(0.5)
+  print("hol3")
+  ct33 <- read.csv(var)
+  py<- ggplot() + geom_line(aes(y = c_myc, x = GAPDH),
+                            data = ct33)
+  print(py)
+  
+  print("chau")
+}
+
+
+
+
+
 
 
 
@@ -309,3 +463,28 @@ print(m)
 m$count()
 
 ### aqui funcion para recuperar datos de r
+
+##### al parecer esto lee csv del compu
+
+
+#' An endpoint to test the API
+#'
+#' @param q A character string to print back
+#' @get /test
+
+function(q=""){
+  list(msg = paste0("You entered: '", q, "'"))
+}
+
+#' Read a csv
+#'
+#' @param path The path.
+#' @get /csv
+#' @csv
+
+function(res, path){
+  csv_content <- read_csv(path)
+  filename <- tempfile(fileext = ".csv")
+  write.csv(csv_content, filename, row.names = FALSE)
+  include_file(filename, res, "text/csv")
+}
