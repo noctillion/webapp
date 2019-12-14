@@ -42,6 +42,12 @@ router.get("/test", (req, res) => {
   res.json({ msg: "posts works" });
 }); /// manda a la rura /api/posts/test.. la primeraparte estaba en el server
 
+///ruta publica
+/// /upload
+/// manda los csv a mongo db
+/// metodo POST
+/// en postman funciona como form-data recibiendo csvFile como keyname
+
 router.post("/", multer(multerConfig).single("csvFile"), function(req, res) {
   res.send("this is post upload"); /// csvFile es el nombre del boton en la forma
   // check for file
@@ -55,6 +61,8 @@ router.post("/", multer(multerConfig).single("csvFile"), function(req, res) {
   }
   /// save data in database
   let upload = new Csv(req.body).save();
+  // sinprobar
+  //.then(csv => res.json(csv))
 
   /*   let upload = new Csv({
     //user: req.user.id,
@@ -65,8 +73,15 @@ router.post("/", multer(multerConfig).single("csvFile"), function(req, res) {
   upload.save().then(post => res.json(post)); */
 });
 
+/// ruta publica
+/// busca el ultimo archivo generado y le devuelve un objeto json
+
 router.get("/", (req, res) => {
-  res.json({ msg: "posts works" });
+  Csv.find()
+    .sort({ date: -1 })
+    .limit(1)
+    .then(csv => res.json(csv))
+    .catch(err => res.status(404).json({ nocsvfound: "Not csv list found" }));
 });
 
 module.exports = router;

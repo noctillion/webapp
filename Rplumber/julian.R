@@ -114,16 +114,47 @@ Sys.sleep(0.5)
 }
 
 
+##### este sirve bn 
+
+#' Plot a histogram toma x y y tambien
+#' @png
+#* @param eny the request object
+#* @param enx the request object
+#* @post /plot34
+deru <- function(file, eny, enx){
+  m <- mongo(collection='csv', url = "mongodb://julian:Julian12345@ds155243.mlab.com:55243/mirna")
+  alldata <- m$find(query='{}')
+  print("hol1")
+  arr <- dplyr::pull(alldata, csvFile)
+  print("hol2")
+  matches <- regmatches(arr, gregexpr("[[:digit:]]+", arr))
+  print("hol3")
+  unl <- array(unlist(matches))
+  print(unl)
+  print(file)
+Sys.sleep(0.5)
+  if (file %in% unl){
+    print("hola")
+      ##fl <- system.file('extdata', 'ct2.csv', package = 'pcr')
+    var <- paste0('csvFile-',file,'.csv')
+    print(var)
+      ct33<-readr::read_csv(var)
+      py<- ggplot() + geom_line(aes_string(y = eny, x = enx),
+                                data = ct33)
+      print(py)
+  }else{
+    print("chau")
+}
+}
 
 
-
-
+#### no sirve .. la correlacion si
 #' Plot a histogram
 #' @png
 #* @get /plot27
-tyu <- function(){
-  data(mtcars)
-  r <- cor(mtcars)
+ret <- function(){
+  ct33 <- read.csv("mtcars.csv", row.names=1)
+  r <- cor(ct33)
   ## We use this function to calculate a matrix of p-values from correlation tests
   ## https://stackoverflow.com/a/13112337/4747043
   cor.test.p <- function(x){
@@ -136,7 +167,10 @@ tyu <- function(){
     dimnames(z) <- list(colnames(x), colnames(x))
     z
   }
-  p <- cor.test.p(mtcars)
+  p <- cor.test.p(ct33)
+  
+  print(p)
+  print("aqui")
   
   heatmaply_cor(
     r,
@@ -145,13 +179,8 @@ tyu <- function(){
     point_size_name = "-log10(p-value)",
     label_names = c("x", "y", "Correlation")
   )
-  
-  
+  browseURL("heatmaply_plot.html")
 }
-
-
-
-
 
 
 

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-///import FileUpload from "../fileuploader/FileUploader.jsx";
+///import FileUpload from "../fileuploader/FileUploader4";
 ///import ImageFile from "../fileuploader/FileUploader2.jsx";
 ///import FileReader from "../fileuploader/FileUploader3.jsx";/// el que sirve papa
 import Uploader from "../fileuploader/FileUploader5.jsx";
+import SimpleReactFileUpload from "../fileuploader/FileUploader4.jsx";
 import "./rpcr1.style.css";
 
 class Rplumber1 extends Component {
@@ -42,6 +43,8 @@ class Rplumber1 extends Component {
 
           {/*   <FileReader /> */}
           <Uploader />
+          <div> espacio</div>
+          <SimpleReactFileUpload />
         </div>
         <img className="plot plot1" src="http://localhost:8000/plot3" />
         <img className="plot plot2" src="http://localhost:8000/plot5" />
