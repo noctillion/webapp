@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import "./form.style.css";
 
 ///se pasan los props que se requiere.. no se si props haria lo mismo aqui.. ver
 let InputGroup = ({

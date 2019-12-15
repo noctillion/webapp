@@ -40,7 +40,7 @@ export let getCurrentProfile = () => dispatch => {
 export let createProfile = (profileData, history) => dispatch => {
   axios
     .post("/api/profile", profileData)
-    .then(res => history.push("/dasboard")) //// aqui se redirecciona despues de mandarlo
+    .then(res => history.push("/dashboard")) //// aqui se redirecciona despues de mandarlo
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

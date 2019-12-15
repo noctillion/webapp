@@ -1,5 +1,4 @@
 .box1 {
-  border: solid black 1px;
   padding: 20px;
   font-family: fantasy;
   background-color: rgb(233, 233, 233);
@@ -9,6 +8,37 @@
 
 .plot {
   display: flex;
-  border: solid black 1px;
   padding: 20px;
+}
+.uploader {
+  width: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
+.separatorc {
+  display: block;
+  background-color: rgb(143, 179, 146);
+  width: 100%;
+  height: 20px;
+  padding-top: 30px;
+}
+
+.graphContainer {
+  align-items: center;
+  justify-content: center;
+  width: 50%; /* or whatever width you want. */
+  max-width: 50%; /* or whatever width you want. */
+  display: inline-block;
+  background-color: aliceblue;
+}
+
+.graphtypeA {
+  padding: 20px;
+}
+
+.containerA {
+  display: flex;
 }

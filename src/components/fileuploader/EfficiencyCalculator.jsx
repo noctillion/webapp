@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import { Label } from "semantic-ui-react";
 import "./fileuploader.style.css";
 
-class SimpleReactFileUpload extends Component {
+class EfficiencyPcrComp extends Component {
   constructor() {
     super();
-    this.state = { selectedFile: null, codeGraphA: null, grapA: null };
+    this.state = {
+      selectedFile: null,
+      codeGraphA: null,
+      grapA: null,
+      refGen: ""
+    };
   }
   ///state =
 
@@ -16,6 +21,13 @@ class SimpleReactFileUpload extends Component {
       //graph_a: null
     });
   };
+
+  handleRefge = event => {
+    this.setState({
+      refGen: event.target.value
+    });
+  };
+
   handleUpload = async event => {
     // define upload
     event.preventDefault();
@@ -51,11 +63,19 @@ class SimpleReactFileUpload extends Component {
 
     /* /// pa ver AQUI SE ENVIA EL CODIGO RECUPERADO A R, EN PRINCIPIO TODO LO DE ANTES SERIA IGUAL */
 
+    //let seer = event.target[1].value;
+    //console.log(seer);
+
+    /* this.setState({
+      refGen: event.target[1].value
+    }); */
+    console.log("code en state refgen", this.state.refGen);
     var datat = new URLSearchParams();
-    datat.append(
-      "file",
-      this.state.codeGraphA
-    ); /* /// FILE ES EL NOMBRE DE LO QUE ESPERA //R EN ESTE CASO SOLO PARA GENERAR UNA GRAFICA.. EN R EL TOKEN ENVIADO 1) GENERA UNA CONECCION DE R Y MONGO QUE RECUPERA LOS NOMBRES DE LOS DOCUMENTOS Y COMPARA EL CODIGO ENVIADO POR EL USUARIO CON LOS CODIGOS DE LA BASE DE DATOS. SILOS CODIGOS COINCIDEN R LEE EL ARCHIVO DESCARGADO QUE TENGA EL COGIGO EN EL SERVIDOR, HACE LA OPERACION REQUERIDA Y DEVUELVE UN RESULTADO AL FRONTEND */
+    datat.append("file", this.state.codeGraphA);
+    datat.append("refGe", this.state.refGen); //// si se pobe el valor funciona GAPDH
+    datat.append("meth", "efficiency");
+
+    /* /// FILE ES EL NOMBRE DE LO QUE ESPERA //R EN ESTE CASO SOLO PARA GENERAR UNA GRAFICA.. EN R EL TOKEN ENVIADO 1) GENERA UNA CONECCION DE R Y MONGO QUE RECUPERA LOS NOMBRES DE LOS DOCUMENTOS Y COMPARA EL CODIGO ENVIADO POR EL USUARIO CON LOS CODIGOS DE LA BASE DE DATOS. SILOS CODIGOS COINCIDEN R LEE EL ARCHIVO DESCARGADO QUE TENGA EL COGIGO EN EL SERVIDOR, HACE LA OPERACION REQUERIDA Y DEVUELVE UN RESULTADO AL FRONTEND */
     let options3 = {
       method: "POST",
       headers: {
@@ -64,12 +84,27 @@ class SimpleReactFileUpload extends Component {
       body: datat
       //mode: "no-cors"
     };
-    let responseG = await fetch("http://localhost:8000/plot24", options3);
-    let newG = await responseG.blob();
-    let newB = await URL.createObjectURL(newG);
-    console.log(newB);
-    this.setState({ grapA: newB });
-    console.log(this.state.grapA);
+    let responseG = await fetch("http://localhost:8000/amefile", options3);
+    let texte = await responseG.text();
+    console.log(texte, "fromj");
+    /*  this.setState({ grapA: newB });
+    console.log(this.state.grapA); */
+
+    /*     let options3 = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+      //body: datat
+      //mode: "no-cors"
+    };
+    let respe = await fetch(
+      "http://localhost:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
+      options3
+    );
+    let texte = await respe.text();
+    console.log(texte);
+ */
 
     /*     var objectURL = URL.createObjectURL(newG);
     console.log(objectURL); */
@@ -99,6 +134,20 @@ class SimpleReactFileUpload extends Component {
             <label className="inputFileuploader">
               <input type="file" name="file" onChange={this.handleFileChange} />
             </label>
+            <label className="inputFileuploader">
+              <input
+                type="text"
+                name="refGe"
+                onChange={this.handleRefge}
+                value={this.state.refGen}
+              />
+            </label>
+            {/*  <input
+              type="text"
+              placeholder="Gen name"
+              onChange={this.handleFileChange}
+              value={this.state.refGen}
+            /> */}
             <div className="imagE">
               <img className="plot plot3" src={this.state.grapA} />
             </div>
@@ -114,4 +163,4 @@ class SimpleReactFileUpload extends Component {
     );
   }
 }
-export default SimpleReactFileUpload;
+export default EfficiencyPcrComp;

@@ -8,6 +8,7 @@ import InputGroup from "../common/InputGroup.jsx";
 import SelectListGroup from "../common/SelectListGroup.jsx";
 import ImageUpload from "../common/ImageUpload.jsx";
 import { createProfile } from "../../actions/profileActions"; //// es una accion
+import "./createprofile.style.css";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -97,11 +98,9 @@ class CreateProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-6auto">
-              <h1 className="display-6 text-center">Create your profile</h1>
-              <p className="lead text-center">
-                Give some information for your profile
-              </p>
-              <small className="d-block pb-3">* = required field</small>
+              <h1 className="profinfo display-6 text-center">
+                Profile information
+              </h1>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="* Profile Nickname"
@@ -162,7 +161,7 @@ class CreateProfile extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="boton btn btn-success btn-block mt-4"
                 />
               </form>
             </div>
@@ -188,3 +187,4 @@ export default connect(mapStateToProps, { createProfile })(
   withRouter(CreateProfile)
 );
 // para poder redireccionar toca usar withrouter
+////para redireccionar al dashboard se va a profile.actions.js export let createProfile

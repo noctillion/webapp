@@ -81,7 +81,7 @@ de <- function(file){
     print("chau")
     
   }
-##### este sirve bn 
+##### este sirve bn NO MODIFICAR
 
 #' Plot a histogram
 #' @png
@@ -146,6 +146,44 @@ Sys.sleep(0.5)
     print("chau")
 }
 }
+
+###### 44 prueba Sirve bn no modificar recibe POST params
+#' calculate amplification efficiency
+#' @serializer unboxedJSON
+#' @post /amepleff
+allVal <- function(file, gv1,gv2,eacH,refGe,refGr){
+  m <- mongo(collection='csv', url = "mongodb://julian:Julian12345@ds155243.mlab.com:55243/mirna")
+  alldata <- m$find(query='{}')
+  print("hol1")
+  arr <- dplyr::pull(alldata, csvFile)
+  print("hol2")
+  matches <- regmatches(arr, gregexpr("[[:digit:]]+", arr))
+  print("hol3")
+  unl <- array(unlist(matches))
+  print(unl)
+  print(file)
+Sys.sleep(0.5)
+  if (file %in% unl){
+    print("hola")
+      ##fl <- system.file('extdata', 'ct2.csv', package = 'pcr')
+    var <- paste0('csvFile-',file,'.csv')
+    print(var)
+      ct33<-readr::read_csv(var)
+      group_var <- rep(c(gv1, gv2), each = as.numeric(eacH))
+  res <- pcr_analyze(ct33,
+                     group_var = group_var,
+                     reference_gene = refGe,
+                     reference_group = refGr)
+  ##print(res)
+
+  }else{
+    print("chau")
+}
+}
+
+####allVal('brain', 'kidney', 6,'GAPDH','brain')
+
+
 
 
 #### no sirve .. la correlacion si
@@ -276,6 +314,61 @@ ampef<- function(){
                   reference_gene = 'GAPDH',
                   method = 'efficiency')
 }
+
+
+##### funciona bien con body params en postman ver foto
+
+## calculate amplification efficiency
+#' calculate amplification efficiency
+#' @serializer unboxedJSON
+#' @post /amefile
+ampef2 <- function(file, refGe, meth){
+  m <- mongo(collection='csv', url = "mongodb://julian:Julian12345@ds155243.mlab.com:55243/mirna")
+  alldata <- m$find(query='{}')
+  print("hol1")
+  arr <- dplyr::pull(alldata, csvFile)
+  print("hol2")
+  matches <- regmatches(arr, gregexpr("[[:digit:]]+", arr))
+  print("hol3")
+  unl <- array(unlist(matches))
+  print(unl)
+  print(file)
+Sys.sleep(0.5)
+  if (file %in% unl){
+    print("hola")
+      ##fl <- system.file('extdata', 'ct2.csv', package = 'pcr')
+    var <- paste0('csvFile-',file,'.csv')
+    print(var)
+      ct33<-readr::read_csv(var)
+      pcr_assess(ct33,
+                  amount = amount,
+                  reference_gene = refGe,
+                  method = meth)
+      
+  }else{
+    print("chau")
+}
+}
+
+
+#### reference_gene = 'GAPDH'
+#### method = 'efficiency'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,7 +1,18 @@
 .dashcont {
-  background-color: rgb(127, 127, 160);
+  background: url("../../../public/images/image1.jpg") no-repeat;
+  background-color: rgb(217, 217, 226);
   margin: 0%;
   padding: 20px;
-  height: 155px;
+  height: 90%;
+  overflow: hidden;
   margin-top: -26px;
+  background-position: center;
+}
+
+.dashbuttons {
+  display: flex;
+}
+
+.botonda {
+  height: 47px;
 }

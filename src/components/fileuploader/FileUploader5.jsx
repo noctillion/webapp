@@ -10,7 +10,8 @@ GFPT 128,32.4,4,78.7,66,4.08,2.2,19.47,1,1,4,1
 
 class Uploader extends React.Component {
   state = {
-    csvData: null
+    csvData: null,
+    fileName: null
   };
 
   handleFiles = async files => {
@@ -18,9 +19,13 @@ class Uploader extends React.Component {
     reader.onload = async e => {
       // Use reader.result
       this.setState({
-        csvData: reader.result
+        csvData: reader.result,
+        fileName: files[0].name
       });
       console.log("datacsv", this.state.csvData);
+      console.log(this.state.fileName);
+      let datadisp = this.state.csvData;
+      console.log("datacsvLoad", datadisp);
 
       const response = await fetch("/file", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -35,21 +40,32 @@ class Uploader extends React.Component {
   render() {
     return (
       <div>
-        <ReactFileReader
-          multipleFiles={false}
-          fileTypes={[".csv"]}
-          handleFiles={this.handleFiles}
-        >
-          {/* <input type="file" onChange={this.handleFiles} value="boton" /> */}
-          {/* upload to{" "}
+        <div>
+          <ReactFileReader
+            multipleFiles={false}
+            fileTypes={[".csv"]}
+            handleFiles={this.handleFiles}
+          >
+            {/* <input type="file" onChange={this.handleFiles} value="boton" /> */}
+            {/* upload to{" "}
           </input> */}
-          <button className="btn btn-outline-success ml-3 mb-4">Upload</button>
-        </ReactFileReader>
-        <CsvToHtmlTable
-          data={this.state.csvData || sampleData}
-          csvDelimiter=","
-          tableClassName="table table-striped table-hover"
-        />
+            <button
+              className="btn btn-outline-success mb-4 mt-4"
+              style={{
+                display: "block",
+                margin_left: "auto",
+                margin_right: "auto"
+              }}
+            >
+              Visualice your dataset
+            </button>
+          </ReactFileReader>
+          <CsvToHtmlTable
+            data={this.state.csvData || sampleData}
+            csvDelimiter=","
+            tableClassName="table table-striped table-hover"
+          />
+        </div>
       </div>
     );
   }

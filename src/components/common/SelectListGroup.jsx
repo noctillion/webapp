@@ -10,7 +10,7 @@ let SelectListGroup = ({ name, value, error, info, onChange, options }) => {
     </option>
   ));
   return (
-    <div className="form-group">
+    <div className="form-group inputsj">
       <select
         className={classnames("form-control form-control-lg", {
           "is-invalid": error

@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import "./form.style.css";
 
 ///se pasan los props que se requiere.. no se si props haria lo mismo aqui.. ver
 let TextAreaFieldGroup = ({
@@ -12,7 +13,7 @@ let TextAreaFieldGroup = ({
   onChange
 }) => {
   return (
-    <div className="form-group">
+    <div className="form-group inputsj">
       <textarea
         className={classnames("form-control form-control-lg", {
           "is-invalid": error

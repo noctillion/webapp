@@ -1,0 +1,25 @@
+.containerFileuploader {
+  border: solid rgb(175, 175, 175) 1px;
+}
+
+.inputFileuploader {
+  background-color: rgb(143, 179, 146);
+  width: 100%;
+  max-width: 100%; /* or whatever width you want. */
+  display: inline-block;
+  height: 50%;
+  max-height: 50%;
+}
+
+.plot {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imagE {
+  padding: 20px;
+}
+
+.buttonFileuploader {
+  margin-left: 40%;
+}
