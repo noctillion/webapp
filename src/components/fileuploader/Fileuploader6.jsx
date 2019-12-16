@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import { Label } from "semantic-ui-react";
 import "./fileuploader.style.css";
 
-class EfficiencyPcrComp extends Component {
+class SimpleReactFileUpload2 extends Component {
   constructor() {
     super();
     this.state = {
       selectedFile: null,
       codeGraphA: null,
       grapA: null,
-      refGen: "",
-      method: "",
-      movies: []
+      refGen: null,
+      method: null
     };
   }
   ///state =
@@ -36,7 +35,6 @@ class EfficiencyPcrComp extends Component {
       method: event.target.value
     });
   };
-
   handleUpload = async event => {
     // define upload
     event.preventDefault();
@@ -72,13 +70,6 @@ class EfficiencyPcrComp extends Component {
 
     /* /// pa ver AQUI SE ENVIA EL CODIGO RECUPERADO A R, EN PRINCIPIO TODO LO DE ANTES SERIA IGUAL */
 
-    //let seer = event.target[1].value;
-    //console.log(seer);
-
-    /* this.setState({
-      refGen: event.target[1].value
-    }); */
-    console.log("code en state refgen", this.state.refGen);
     var datat = new URLSearchParams();
     datat.append("file", this.state.codeGraphA);
     datat.append("refGe", this.state.refGen); //// si se pobe el valor funciona GAPDH
@@ -93,42 +84,12 @@ class EfficiencyPcrComp extends Component {
       body: datat
       //mode: "no-cors"
     };
-
-    let responseG = await fetch("http://localhost:8000/amefile", options3);
-    let texte = await responseG.json();
-    this.setState({ movies: texte });
-    console.log(this.state.movies, "fromj");
-    let codecSVA = texte.map(on => {
-      return on.gene;
-    });
-
-    console.log(codecSVA);
-
-    /*    let responseG = await fetch("http://localhost:8000/amefile", options3);
-    let texte = await responseG.text();
-    console.log(texte, "fromj"); */ // sirve
-
-    /*  .then(res => res.json())
-      .then(movies => this.setState({ movies }))
-      .catch(err => console.log(err)); */
-    /*  this.setState({ grapA: newB });
-    console.log(this.state.grapA); */
-
-    /*     let options3 = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-      }
-      //body: datat
-      //mode: "no-cors"
-    };
-    let respe = await fetch(
-      "http://localhost:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
-      options3
-    );
-    let texte = await respe.text();
-    console.log(texte);
- */
+    let responseG = await fetch("http://localhost:8000/plot2", options3);
+    let newG = await responseG.blob();
+    let newB = await URL.createObjectURL(newG);
+    console.log(newB);
+    this.setState({ grapA: newB });
+    console.log(this.state.grapA);
 
     /*     var objectURL = URL.createObjectURL(newG);
     console.log(objectURL); */
@@ -151,28 +112,17 @@ class EfficiencyPcrComp extends Component {
   };
 
   render() {
-    let items = this.state.movies.map(on => {
-      return on.gene;
-    });
-    let effi = this.state.movies.map(on => {
-      return on.intercept;
-    });
-    let r_squa = this.state.movies.map(on => {
-      return on.r_squared;
-    });
-    let slop = this.state.movies.map(on => {
-      return on.slope;
-    });
-
     return (
       <div>
-        <h5>qPCR Efficiency calculation</h5>
         <div className="containerFileuploader">
           <form className="App" onSubmit={this.handleUpload}>
             <label className="inputFileuploader">
               <input type="file" name="file" onChange={this.handleFileChange} />
             </label>
-            <label className="inputFileuploader">
+            <div className="imagE">
+              <img className="plot plot3" src={this.state.grapA} />
+            </div>
+            <label className="inputFileuploader2">
               <input
                 type="text"
                 name="refGe"
@@ -181,7 +131,7 @@ class EfficiencyPcrComp extends Component {
                 placeholder="Reference gen"
               />
             </label>
-            <label className="inputFileuploader">
+            <label className="inputFileuploader2">
               <input
                 type="text"
                 name="meth"
@@ -190,21 +140,6 @@ class EfficiencyPcrComp extends Component {
                 placeholder="Method"
               />
             </label>
-            {/*  <input
-              type="text"
-              placeholder="Gen name"
-              onChange={this.handleFileChange}
-              value={this.state.refGen}
-            /> */}
-            {/*             <div className="imagE">
-              <img className="plot plot3" src={this.state.grapA} />
-            </div> */}
-            <div>
-              <ul>Gen: {items}</ul>
-              <ul>Intercept: {effi}</ul>
-              <ul>r_squared: {r_squa}</ul>
-              <ul>Slope: {slop}</ul>
-            </div>
             <button
               className=" buttonFileuploader btn btn-outline-success mb-2 mt-4"
               onClick={this.handleUpload}
@@ -217,4 +152,4 @@ class EfficiencyPcrComp extends Component {
     );
   }
 }
-export default EfficiencyPcrComp;
+export default SimpleReactFileUpload2;

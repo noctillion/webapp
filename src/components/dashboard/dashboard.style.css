@@ -16,3 +16,16 @@
 .botonda {
   height: 47px;
 }
+.bottonn {
+  display: grid;
+  height: 47px;
+  width: 200px;
+}
+.labelN {
+  justify-items: center;
+  font-size: small;
+}
+
+/* .divdeboton {
+  display: grid;
+} */

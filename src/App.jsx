@@ -15,7 +15,7 @@ import Mainpage from "./components/mainpage/mainpage.jsx";
 import Navbar from "./components/navbar/navbar.jsx";
 import Register from "./components/auth/register/register.jsx";
 import Login from "./components/auth/login/login.jsx";
-///import Mirna from "./components/mirna/mirna.jsx";
+//import Mirna from "./components/mirna/mirna.jsx";
 ///import Rcomp from "./components/rcomp/rcomp.jsx";
 import Separator from "./components/separator/separator.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
@@ -24,7 +24,9 @@ import CreateProfile from "./components/create-profile/CreateProfile.jsx";
 /* import React_sigma_vis from "./components/react_sigma_vis/react_sigma_vis.jsx";
 import React_sigma_vis2 from "./components/react_sigma_vis2/react_sigma_vis.jsx";
 import React_sigma from "./components/react_sigma/react_sigma.jsx"; */
+import React_sigma_vis2 from "./components/react_sigma_vis2/react_sigma_vis.jsx";
 import Rplumber1 from "./components/rplumb/rpcr1.jsx";
+//import Footer from "./components/footer/footer.jsx";
 
 ///import React_force_graph2 from "./components/react_force_graph2/React_force_graph2.jsx";
 
@@ -71,6 +73,14 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             {/*             <Route exact path="/mirna" component={Mirna} /> */}
             {/*             <Route exact path="/rcomp" component={Rcomp} /> */}
+            <Switch>
+              <PrivateRoute
+                exact
+                exact
+                path="/mirna"
+                component={React_sigma_vis2}
+              />
+            </Switch>
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>

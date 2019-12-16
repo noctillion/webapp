@@ -27,18 +27,50 @@
 }
 
 .graphContainer {
+  /*   border: solid rgb(189, 20, 20) 1px; */
   align-items: center;
   justify-content: center;
-  width: 50%; /* or whatever width you want. */
-  max-width: 50%; /* or whatever width you want. */
+  width: 70%;
+  margin-left: -5px;
   display: inline-block;
   background-color: aliceblue;
+}
+
+.containerA {
+  display: flex;
+  /*   border: solid rgb(19, 148, 36) 1px; */
+  width: 60%; /* or whatever width you want. sto cambia todo */
+  max-width: 60%; /* or whatever width you want. esto cambia todo */
+  margin-left: 30px;
 }
 
 .graphtypeA {
   padding: 20px;
 }
 
-.containerA {
+.analisisContainer {
   display: flex;
+  /*   border: solid black 1px; */
+  padding: 10px;
+}
+
+.dataPcr {
+  padding: 10px;
+}
+
+.uploadandAnalysisContainer {
+  /*   border: solid blue 1px; */
+  margin-right: 65px;
+}
+
+/* .pCr1 {
+  max-width: 30%;
+}
+ */
+.AppR {
+  margin-top: 25px;
+}
+.tittle {
+  margin-top: 10px;
+  margin-left: 20px;
 }

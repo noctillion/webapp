@@ -57,28 +57,29 @@ class Login extends Component {
     let { errors } = this.state;
 
     return (
-      <div className="login_container">
-        <div className="login">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 m-auto">
-                <h3 className="display-7 text-center text-dark text_t">
-                  Log into qPCRexpress
-                </h3>
-                {/*                 <p className="lead text-center">
+      <div className="landingC">
+        <div className="login_container">
+          <div className="login">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12 m-auto">
+                  <h3 className="display-7 text-center text-dark text_t">
+                    Log into qPCRexpress
+                  </h3>
+                  {/*                 <p className="lead text-center">
                   Sign in to your DevConnector account
                 </p> */}
-                <form onSubmit={this.onSubmit}>
-                  <a>Email</a>
-                  <TextFieldGroup
-                    placeholder="Email Address"
-                    name="email"
-                    type="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                    error={errors.email}
-                  />
-                  {/*                   <div className="form-group">
+                  <form onSubmit={this.onSubmit}>
+                    <a>Email</a>
+                    <TextFieldGroup
+                      placeholder="Email Address"
+                      name="email"
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      error={errors.email}
+                    />
+                    {/*                   <div className="form-group">
                     <input
                       type="email"
                       className={classnames("form-control form-control-lg", {
@@ -93,18 +94,18 @@ class Login extends Component {
                       <div className="invalid-feedback">{errors.email}</div>
                     )}
                   </div> */}
-                  <a>Password</a>
+                    <a>Password</a>
 
-                  <TextFieldGroup
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                    error={errors.password}
-                  />
+                    <TextFieldGroup
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      error={errors.password}
+                    />
 
-                  {/*                 <div className="form-group">
+                    {/*                 <div className="form-group">
                     <input
                       type="password"
                       className={classnames("form-control form-control-lg", {
@@ -119,8 +120,9 @@ class Login extends Component {
                       <div className="invalid-feedback">{errors.password}</div>
                     )}
                   </div> */}
-                  <input type="submit" className="btn btn-block blue mt-2" />
-                </form>
+                    <input type="submit" className="btn btn-block blue mt-2" />
+                  </form>
+                </div>
               </div>
             </div>
           </div>

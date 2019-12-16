@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Uploader from "../fileuploader/FileUploader5.jsx";
 import SimpleReactFileUpload from "../fileuploader/FileUploader4.jsx";
 import EfficiencyPcrComp from "../fileuploader/EfficiencyCalculator.jsx";
+import EfficiencyPcrComp2 from "../fileuploader/EfficiencyCalculator2.jsx";
+import SimpleReactFileUpload2 from "../fileuploader/Fileuploader6.jsx";
 import "./rpcr1.style.css";
 
 class Rplumber1 extends Component {
@@ -54,7 +56,7 @@ class Rplumber1 extends Component {
         <button>Upload your csv files</button>
         <div>Aqui</div> */}
         <div className="separatorc"></div>
-        <h5 style={{ padding: "10px" }}>qPCR analysis</h5>
+        <h5 className="tittle">qPCR analysis</h5>
         <div>
           {/*           <Link to="/dashboard">
             <button type="button" className="btn btn-outline-success rounded-0">
@@ -65,14 +67,23 @@ class Rplumber1 extends Component {
           {/*   <FileReader /> */}
           <div className="separatorc"></div>
           <div className="containerA">
-            <div className="uploader">
-              {" "}
-              <Uploader />
-            </div>
-            {/* <div className="separatorc"></div> */}
-
-            <div>
-              <EfficiencyPcrComp />
+            <div className="uploadandAnalysisContainer">
+              <div className="uploaderContainer">
+                <div className="uploader">
+                  {" "}
+                  <Uploader />
+                </div>
+                {/* <div className="separatorc"></div> */}
+              </div>
+              <div className="separatorc sesep"></div>
+              <div className="analisisContainer">
+                <div className="dataPcr pCr1">
+                  <EfficiencyPcrComp />
+                </div>
+                <div className="dataPcr pCr2">
+                  <EfficiencyPcrComp2 />
+                </div>
+              </div>
             </div>
 
             <div className="graphContainer">
@@ -81,9 +92,9 @@ class Rplumber1 extends Component {
                 <SimpleReactFileUpload />
               </div>
 
-              <div className="graphtypeA graph1">
-                <h5> Efficiency correlation graph</h5>
-                <SimpleReactFileUpload />
+              <div className="graphtypeA graph2">
+                <h5> Amplification efficiency graph</h5>
+                <SimpleReactFileUpload2 />
               </div>
             </div>
           </div>

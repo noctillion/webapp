@@ -2,19 +2,22 @@ import React, { Component } from "react";
 import { Label } from "semantic-ui-react";
 import "./fileuploader.style.css";
 
-class EfficiencyPcrComp extends Component {
+class EfficiencyPcrComp2 extends Component {
   constructor() {
     super();
     this.state = {
       selectedFile: null,
       codeGraphA: null,
       grapA: null,
+      grVar1: "",
+      grVar2: "",
+      eacHw: "",
       refGen: "",
-      method: "",
+      refGru: "",
       movies: []
     };
   }
-  ///state =
+  ///state =file, gv1,gv2,eacH,refGe,refGr
 
   handleFileChange = event => {
     this.setState({
@@ -23,17 +26,34 @@ class EfficiencyPcrComp extends Component {
       //graph_a: null
     });
   };
+  //// cuarto paso
+  handleGv1 = event => {
+    this.setState({
+      grVar1: event.target.value
+    });
+  };
 
-  handleRefge = event => {
+  handleGv2 = event => {
+    this.setState({
+      grVar2: event.target.value
+    });
+  };
+
+  handleEach = event => {
+    this.setState({
+      eacHw: event.target.value
+    });
+  };
+
+  handleRefgen = event => {
     this.setState({
       refGen: event.target.value
     });
   };
 
-  //// cuarto paso
-  handleMethod = event => {
+  handleRefgroup = event => {
     this.setState({
-      method: event.target.value
+      refGru: event.target.value
     });
   };
 
@@ -78,12 +98,18 @@ class EfficiencyPcrComp extends Component {
     /* this.setState({
       refGen: event.target[1].value
     }); */
+
+    /* /// pa ver AQUI SE ENVIA EL CODIGO RECUPERADO A R, EN PRINCIPIO TODO LO DE ANTES SERIA IGUAL */
+
     console.log("code en state refgen", this.state.refGen);
     var datat = new URLSearchParams();
     datat.append("file", this.state.codeGraphA);
-    datat.append("refGe", this.state.refGen); //// si se pobe el valor funciona GAPDH
-    datat.append("meth", this.state.method); ///primero
-
+    datat.append("gv1", this.state.grVar1);
+    datat.append("gv2", this.state.grVar2);
+    datat.append("eacH", this.state.eacHw);
+    datat.append("refGe", this.state.refGen);
+    datat.append("refGr", this.state.refGru);
+    //// aqui arriva se asocian los nombres en r y el estado de las variables
     /* /// FILE ES EL NOMBRE DE LO QUE ESPERA //R EN ESTE CASO SOLO PARA GENERAR UNA GRAFICA.. EN R EL TOKEN ENVIADO 1) GENERA UNA CONECCION DE R Y MONGO QUE RECUPERA LOS NOMBRES DE LOS DOCUMENTOS Y COMPARA EL CODIGO ENVIADO POR EL USUARIO CON LOS CODIGOS DE LA BASE DE DATOS. SILOS CODIGOS COINCIDEN R LEE EL ARCHIVO DESCARGADO QUE TENGA EL COGIGO EN EL SERVIDOR, HACE LA OPERACION REQUERIDA Y DEVUELVE UN RESULTADO AL FRONTEND */
     let options3 = {
       method: "POST",
@@ -93,24 +119,19 @@ class EfficiencyPcrComp extends Component {
       body: datat
       //mode: "no-cors"
     };
-
-    let responseG = await fetch("http://localhost:8000/amefile", options3);
+    let responseG = await fetch("http://localhost:8000/amepleff", options3);
     let texte = await responseG.json();
+    console.log(texte, "fromj");
     this.setState({ movies: texte });
     console.log(this.state.movies, "fromj");
     let codecSVA = texte.map(on => {
       return on.gene;
     });
 
-    console.log(codecSVA);
-
-    /*    let responseG = await fetch("http://localhost:8000/amefile", options3);
-    let texte = await responseG.text();
-    console.log(texte, "fromj"); */ // sirve
-
-    /*  .then(res => res.json())
+    /*   .then(res => res.json())
       .then(movies => this.setState({ movies }))
       .catch(err => console.log(err)); */
+
     /*  this.setState({ grapA: newB });
     console.log(this.state.grapA); */
 
@@ -151,43 +172,58 @@ class EfficiencyPcrComp extends Component {
   };
 
   render() {
-    let items = this.state.movies.map(on => {
-      return on.gene;
-    });
-    let effi = this.state.movies.map(on => {
-      return on.intercept;
-    });
-    let r_squa = this.state.movies.map(on => {
-      return on.r_squared;
-    });
-    let slop = this.state.movies.map(on => {
-      return on.slope;
-    });
-
     return (
       <div>
-        <h5>qPCR Efficiency calculation</h5>
+        <h5>Delta delta ct model</h5>
         <div className="containerFileuploader">
           <form className="App" onSubmit={this.handleUpload}>
             <label className="inputFileuploader">
               <input type="file" name="file" onChange={this.handleFileChange} />
             </label>
+            {/*  ///state =file, gv1,gv2,eacH,refGe,refGr */}
+            <label className="inputFileuploader">
+              <input
+                type="text"
+                name="gv1"
+                onChange={this.handleGv1}
+                value={this.state.grVar1}
+                placeholder="Grouping variable 1"
+              />
+            </label>
+            <label className="inputFileuploader">
+              <input
+                type="text"
+                name="gv2"
+                onChange={this.handleGv2}
+                value={this.state.grVar2}
+                placeholder="Grouping variable 2"
+              />
+            </label>
+            <label className="inputFileuploader">
+              <input
+                type="text"
+                name="eacH"
+                onChange={this.handleEach}
+                value={this.state.eacHw}
+                placeholder="Each"
+              />
+            </label>
             <label className="inputFileuploader">
               <input
                 type="text"
                 name="refGe"
-                onChange={this.handleRefge}
-                value={this.state.refGen}
+                onChange={this.handleRefgen} /* tercer paso */
+                value={this.state.refGen} /* segundo paso */
                 placeholder="Reference gen"
               />
             </label>
             <label className="inputFileuploader">
               <input
                 type="text"
-                name="meth"
-                onChange={this.handleMethod} /* tercer paso */
-                value={this.state.method} /* segundo paso */
-                placeholder="Method"
+                name="refGr"
+                onChange={this.handleRefgroup} /* tercer paso */
+                value={this.state.refGru} /* segundo paso */
+                placeholder="Reference for grouping"
               />
             </label>
             {/*  <input
@@ -200,11 +236,23 @@ class EfficiencyPcrComp extends Component {
               <img className="plot plot3" src={this.state.grapA} />
             </div> */}
             <div>
+              {/*               
               <ul>Gen: {items}</ul>
               <ul>Intercept: {effi}</ul>
               <ul>r_squared: {r_squa}</ul>
-              <ul>Slope: {slop}</ul>
+              <ul>Slope: {slop}</ul> */}
             </div>
+            <div>
+              {this.state.movies.map((genRes, index) => {
+                return (
+                  <div>
+                    {genRes.gene} {genRes.group} {genRes.normalized}{" "}
+                    {genRes.relative_expression}
+                  </div>
+                );
+              })}
+            </div>
+
             <button
               className=" buttonFileuploader btn btn-outline-success mb-2 mt-4"
               onClick={this.handleUpload}
@@ -217,4 +265,4 @@ class EfficiencyPcrComp extends Component {
     );
   }
 }
-export default EfficiencyPcrComp;
+export default EfficiencyPcrComp2;

@@ -76,93 +76,99 @@ class Register extends Component {
     let { errors } = this.state;
     ///let { user } = this.props.auth;
     return (
-      <div className="register_container">
-        <div className="register">
-          {/* {user ? user.name : null} */}
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 m-auto">
-                <h3 className="display-7 text-center text-dark">
-                  Create a new account
-                </h3>
-                {/*                 <p className="lead text-center text-secondary">
+      <div className="landindP">
+        <div className="register_container">
+          <div className="register">
+            {/* {user ? user.name : null} */}
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12 m-auto">
+                  <h3 className="display-7 text-center text-dark">
+                    Create a new account
+                  </h3>
+                  {/*                 <p className="lead text-center text-secondary">
                   It is also free and allways will be
                 </p> */}
-                <form onSubmit={this.onSubmit}>
-                  <a>Name</a>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className={classnames("form-control form-control-lg", {
-                        "is-invalid": errors.name
-                      })}
-                      placeholder="Name"
-                      name="name"
-                      value={this.state.name}
-                      onChange={this.onChange}
-                      //// esto pone errores en el dom poniendo un tag en className que viene de bootstrap
+                  <form onSubmit={this.onSubmit}>
+                    <a>Name</a>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        className={classnames("form-control form-control-lg", {
+                          "is-invalid": errors.name
+                        })}
+                        placeholder="Name"
+                        name="name"
+                        value={this.state.name}
+                        onChange={this.onChange}
+                        //// esto pone errores en el dom poniendo un tag en className que viene de bootstrap
 
-                      ///onChange={this.onChange.bind(this)} esto es para pegar el campo con el state.. se puede hacer en el constructor o repitiendo esto en cada campo
-                      ///required
-                    />
-                    {errors.name && (
-                      <div className="invalid-feedback">{errors.name}</div>
-                    )}
-                  </div>
-                  <div className="form-group">
-                    <a>Email</a>
-                    <input
-                      type="email"
-                      className={classnames("form-control form-control-lg", {
-                        "is-invalid": errors.email
-                      })}
-                      placeholder="Email Address"
-                      name="email"
-                      value={this.state.email}
-                      onChange={this.onChange}
-                    />
-                    {errors.email && (
-                      <div className="invalid-feedback">{errors.email}</div>
-                    )}
-                    <small className="form-text text-muted">
-                      {/*                     This site uses Gravatar so if you want a profile image, use
+                        ///onChange={this.onChange.bind(this)} esto es para pegar el campo con el state.. se puede hacer en el constructor o repitiendo esto en cada campo
+                        ///required
+                      />
+                      {errors.name && (
+                        <div className="invalid-feedback">{errors.name}</div>
+                      )}
+                    </div>
+                    <div className="form-group">
+                      <a>Email</a>
+                      <input
+                        type="email"
+                        className={classnames("form-control form-control-lg", {
+                          "is-invalid": errors.email
+                        })}
+                        placeholder="Email Address"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.onChange}
+                      />
+                      {errors.email && (
+                        <div className="invalid-feedback">{errors.email}</div>
+                      )}
+                      <small className="form-text text-muted">
+                        {/*                     This site uses Gravatar so if you want a profile image, use
                     a Gravatar email */}
-                    </small>
-                  </div>
-                  <div className="form-group">
-                    <a>Password</a>
-                    <input
-                      type="password"
-                      className={classnames("form-control form-control-lg", {
-                        "is-invalid": errors.password
-                      })}
-                      placeholder="Password"
-                      name="password"
-                      value={this.state.password}
-                      onChange={this.onChange}
-                    />
-                    {errors.password && (
-                      <div className="invalid-feedback">{errors.password}</div>
-                    )}
-                  </div>
-                  <a>Confirm password</a>
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      className={classnames("form-control form-control-lg", {
-                        "is-invalid": errors.password2
-                      })}
-                      placeholder="Confirm Password"
-                      name="password2"
-                      value={this.state.password2}
-                      onChange={this.onChange}
-                    />
-                    {errors.password2 && (
-                      <div className="invalid-feedback">{errors.password2}</div>
-                    )}
-                  </div>
-                  <input type="submit" className="btn btn-block blue mt-2" />
-                </form>
+                      </small>
+                    </div>
+                    <div className="form-group">
+                      <a>Password</a>
+                      <input
+                        type="password"
+                        className={classnames("form-control form-control-lg", {
+                          "is-invalid": errors.password
+                        })}
+                        placeholder="Password"
+                        name="password"
+                        value={this.state.password}
+                        onChange={this.onChange}
+                      />
+                      {errors.password && (
+                        <div className="invalid-feedback">
+                          {errors.password}
+                        </div>
+                      )}
+                    </div>
+                    <a>Confirm password</a>
+                    <div className="form-group">
+                      <input
+                        type="password"
+                        className={classnames("form-control form-control-lg", {
+                          "is-invalid": errors.password2
+                        })}
+                        placeholder="Confirm Password"
+                        name="password2"
+                        value={this.state.password2}
+                        onChange={this.onChange}
+                      />
+                      {errors.password2 && (
+                        <div className="invalid-feedback">
+                          {errors.password2}
+                        </div>
+                      )}
+                    </div>
+                    <input type="submit" className="btn btn-block blue mt-2" />
+                  </form>
+                </div>
               </div>
             </div>
           </div>

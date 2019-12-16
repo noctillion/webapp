@@ -3,7 +3,7 @@
 }
 
 .inputFileuploader {
-  background-color: rgb(143, 179, 146);
+  /* background-color: rgb(143, 179, 146); */
   width: 100%;
   max-width: 100%; /* or whatever width you want. */
   display: inline-block;

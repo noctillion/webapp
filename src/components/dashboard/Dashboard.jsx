@@ -7,6 +7,7 @@ import CustomButton from "../custbutton/custom-button.component.jsx";
 ///import Spinner from "../common/Spinner.jsx";
 import ProfileActions from "./ProfileAction.jsx";
 import "./dashboard.style.css";
+import Rplumber1 from "../rplumb/rpcr1.jsx";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -52,12 +53,17 @@ class Dashboard extends Component {
         );
       } else {
         dashboardContent = (
-          <div>
+          <div className="divdeboton">
             <p className="lead text-muted">Welcome {user.name} </p>
             <p>Your profile is not complete, please add some info</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create profile
-            </Link>
+            <div>
+              <Link
+                to="/create-profile"
+                className="bottonn btn btn-lg btn-success"
+              >
+                <label className="labelN">Create profile</label>
+              </Link>
+            </div>
             {/*            <CustomButton onClick={this.toNewProfileClick.bind(this)}>
               Create profile
             </CustomButton> */}
@@ -77,15 +83,18 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="dashboard dashcont">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
-              {dashboardContent}
+      <div>
+        <div className="dashboard dashcont">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <h1 className="display-4"></h1>
+                {dashboardContent}
+              </div>
             </div>
           </div>
         </div>
+        <Rplumber1 />
       </div>
     );
   }

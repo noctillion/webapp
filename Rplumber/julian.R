@@ -377,11 +377,11 @@ write_json(res, "pcrres_2ju.json")
 
 ##knitr::kable(res, caption = 'Table 7: amplification efficiency of c-myc')
 
-
+############################################### aqui
 
 #' Plot a histogram
 #' @png
-#' @get /plot2
+#' @get /plot256
 test2 <- function(){
   gg <- pcr_assess(ct3,
                    amount = amount,
@@ -394,6 +394,60 @@ test2 <- function(){
           strip.text = element_blank())
   print(gg)
 }
+
+###################### aqui
+
+##### este sirve bn 
+
+#' Plot a histogram toma x y y tambien
+#' @png
+#* @param eny the request object
+#* @param enx the request object
+#* @post /plot2
+deru <- function(file, refGe, meth){
+  m <- mongo(collection='csv', url = "mongodb://julian:Julian12345@ds155243.mlab.com:55243/mirna")
+  alldata <- m$find(query='{}')
+  print("hol1")
+  arr <- dplyr::pull(alldata, csvFile)
+  print("hol2")
+  matches <- regmatches(arr, gregexpr("[[:digit:]]+", arr))
+  print("hol3")
+  unl <- array(unlist(matches))
+  print(unl)
+  print(file)
+Sys.sleep(0.5)
+  if (file %in% unl){
+    print("hola")
+      ##fl <- system.file('extdata', 'ct2.csv', package = 'pcr')
+    var <- paste0('csvFile-',file,'.csv')
+    print(var)
+      ct33<-readr::read_csv(var)
+      ######## grefica aqui#####
+      gg <- pcr_assess(ct33,
+                   amount = amount,
+                   reference_gene = refGe,
+                   method = meth,
+                   plot = TRUE)
+  gg + 
+    labs(x = 'log10 amount', y = 'Delta Ct') +
+    theme(strip.background = element_blank(),
+          strip.text = element_blank())
+print(gg)
+      ######## grafica aqui#######
+  }else{
+    print("chau")
+}
+}
+
+#### refGe 'GAPDH'
+
+##meth 'efficiency'
+
+
+
+
+
+
 
 
 

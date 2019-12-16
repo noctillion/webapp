@@ -86,7 +86,7 @@ class Navbar extends Component {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/mirna">
-                  Comunity
+                  Share
                 </Link>
               </li>
             </ul>
