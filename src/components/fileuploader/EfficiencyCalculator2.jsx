@@ -121,6 +121,9 @@ class EfficiencyPcrComp2 extends Component {
     };
     let responseG = await fetch("http://localhost:8000/amepleff", options3);
     let texte = await responseG.json();
+    /*     let texte2 = texte.map(element=>{
+
+    }) */
     console.log(texte, "fromj");
     this.setState({ movies: texte });
     console.log(this.state.movies, "fromj");

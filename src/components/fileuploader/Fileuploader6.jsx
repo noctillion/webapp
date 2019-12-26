@@ -9,8 +9,8 @@ class SimpleReactFileUpload2 extends Component {
       selectedFile: null,
       codeGraphA: null,
       grapA: null,
-      refGen: null,
-      method: null
+      refGen: "",
+      method: ""
     };
   }
   ///state =

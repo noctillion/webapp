@@ -31,7 +31,7 @@
   align-items: center;
   justify-content: center;
   width: 70%;
-  margin-left: -5px;
+  margin-left: -20px;
   display: inline-block;
   background-color: aliceblue;
 }
@@ -60,7 +60,7 @@
 
 .uploadandAnalysisContainer {
   /*   border: solid blue 1px; */
-  margin-right: 65px;
+  margin-right: 37px;
 }
 
 /* .pCr1 {
