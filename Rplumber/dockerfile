@@ -1,0 +1,27 @@
+FROM bioconductor/devel_base2
+
+RUN apt-get update -qq && apt-get install -y \
+  libpq-dev \
+  build-essential \
+  libcurl4-gnutls-dev \
+  libxml2-dev \
+  libssl-dev \
+  libsasl2-dev
+
+RUN install2.r mongolite remotes httr \
+  && installGithub.r metacran/cranlogs
+
+RUN mkdir -p /home/julian/web_projects/merna/Rplumber
+ADD install_packages.R /home/julian/web_projects/merna/Rplumber/
+RUN Rscript /home/julian/web_projects/merna/Rplumber/install_packages.R
+
+
+# copy everything from the current directory into the container
+COPY / /
+
+# open port 80 to traffic
+#EXPOSE 80
+#CMD ["--host", "0.0.0.0"]
+
+# when the container starts, start the main.R script
+ENTRYPOINT ["Rscript", "run-myfile.R"]

@@ -1,5 +1,6 @@
 # myfile.R
-setwd(system("pwd", intern = T) )
+#setwd(system("pwd", intern = T) )
+setwd('./mnt') ## esto se necesita en docker
 
 library(pcr)
 library(ggplot2)
@@ -10,8 +11,15 @@ library(readr)
 library(Rook)
 library(dplyr)
 library(stringi)
-library(readr)
 library(heatmaply)
+library(magrittr)
+library(ggplot2)
+library(igraph)
+library(networkD3)
+library(GGally)
+library(network)
+library(sna)
+library(sigmajs)
 
 #* @filter cors
 cors <- function(res) {
@@ -103,7 +111,7 @@ Sys.sleep(0.5)
     print("hola")
       ##fl <- system.file('extdata', 'ct2.csv', package = 'pcr')
     var <- paste0('csvFile-',file,'.csv')
-    print(var)
+    print("hola")
       ct33<-readr::read_csv(var)
       py<- ggplot() + geom_line(aes(y = c_myc, x = GAPDH),
                                 data = ct33)
@@ -373,7 +381,7 @@ Sys.sleep(0.5)
 
 
 # Export a data frame
-write_json(res, "pcrres_2ju.json")
+#write_json(res, "pcrres_2ju.json")
 
 ##knitr::kable(res, caption = 'Table 7: amplification efficiency of c-myc')
 
@@ -476,7 +484,7 @@ test3 <- function(){
 # f()
 
 # ggplot2 examples
-library(ggplot2)
+
 
 # create factors with value labels
 mtcars$gear <- factor(mtcars$gear,levels=c(3,4,5),
@@ -500,8 +508,6 @@ test4 <- function(){
 }
 
 
-library(magrittr)
-library(ggplot2)
 
 #' Plot a histogram
 #' @png
@@ -531,12 +537,7 @@ test2 <- function(){
 
 ######## hasta aqui bn #####
 
-library(igraph)
-library(networkD3)
-library(GGally)
-library(network)
-library(sna)
-library(ggplot2)
+
 
 
 # root URL
@@ -584,7 +585,6 @@ test8 <- function(){
 }
 
 
-library(igraph)
 
 # Use igraph to make the graph and find membership
 karate <- make_graph("Zachary")
@@ -609,7 +609,6 @@ fa=forceNetwork(Links = karate_d3$links, Nodes = karate_d3$nodes,
 print(fa)}
 
 
-library(sigmajs)
 
 #' Plot a histogram
 #' @serializer html
