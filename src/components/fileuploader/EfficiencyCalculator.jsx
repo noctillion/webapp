@@ -49,7 +49,10 @@ class EfficiencyPcrComp extends Component {
       body: data
       //mode: "no-cors"//// AQUI SE ENVIA EL ARCHIVO AL SERVIDOR.. EN EL LAS RUTAS DE ///MONGO YA ESTAN HECHAS
     };
-    let response = await fetch("http://localhost:4000/api/upload", options);
+    let response = await fetch(
+      "http://167.172.220.203:4000/api/upload",
+      options
+    );
     let resBody = await response.text();
     console.log("this is from endpoint", resBody);
 
@@ -58,7 +61,7 @@ class EfficiencyPcrComp extends Component {
       headers: { Accept: "application/json" }
       //mode: "no-cors"///
     };
-    let res = await fetch("http://localhost:4000/api/upload", options2);
+    let res = await fetch("http://167.172.220.203:4000/api/upload", options2);
     let newD = await res.text();
     let juju = JSON.parse(newD);
     let codecSV = juju.map(on => {
@@ -94,7 +97,10 @@ class EfficiencyPcrComp extends Component {
       //mode: "no-cors"
     };
 
-    let responseG = await fetch("http://localhost:8000/amefile", options3);
+    let responseG = await fetch(
+      "http://167.172.220.203:8000/amefile",
+      options3
+    );
     let texte = await responseG.json();
     this.setState({ movies: texte });
     console.log(this.state.movies, "fromj");
@@ -104,7 +110,7 @@ class EfficiencyPcrComp extends Component {
 
     console.log(codecSVA);
 
-    /*    let responseG = await fetch("http://localhost:8000/amefile", options3);
+    /*    let responseG = await fetch("http://167.172.220.203:8000/amefile", options3);
     let texte = await responseG.text();
     console.log(texte, "fromj"); */ // sirve
 
@@ -123,7 +129,7 @@ class EfficiencyPcrComp extends Component {
       //mode: "no-cors"
     };
     let respe = await fetch(
-      "http://localhost:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
+      "http://167.172.220.203:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
       options3
     );
     let texte = await respe.text();

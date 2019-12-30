@@ -22,7 +22,7 @@ class Rplumber1 extends Component {
       //mode: "no-cors"
     };
     let respe = await fetch(
-      "http://localhost:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
+      "http://167.172.220.203:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
       options3
     );
     let texte = await respe.text();
@@ -31,7 +31,7 @@ class Rplumber1 extends Component {
 
     /// esto llama el end point
 
-    let resp = await fetch("http://localhost:8000/amef");
+    let resp = await fetch("http://167.172.220.203:8000/amef");
     let text = await resp.text();
     console.log(text);
     /// esto llama el end poin
@@ -99,11 +99,11 @@ class Rplumber1 extends Component {
             </div>
           </div>
         </div>
-        {/*  <img className="plot plot1" src="http://localhost:8000/plot3" /> */}
+        {/*  <img className="plot plot1" src="http://167.172.220.203:8000/plot3" /> */}
       </div>
     );
   };
 }
 
 export default Rplumber1;
-/////<img src="http://localhost:8000/plot?randnum=30" />
+/////<img src="http://167.172.220.203:8000/plot?randnum=30" />
