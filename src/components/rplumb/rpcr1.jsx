@@ -11,9 +11,9 @@ import SimpleReactFileUpload2 from "../fileuploader/Fileuploader6.jsx";
 import "./rpcr1.style.css";
 
 class Rplumber1 extends Component {
-  componentDidMount = async () => {
-    //// EJEMPLO FUNCIONAL CON POST// EL CODIGO FILE CAMBIA CADA VEZ
-    /*     let options3 = {
+  ///componentDidMount = async () => {
+  //// EJEMPLO FUNCIONAL CON POST// EL CODIGO FILE CAMBIA CADA VEZ
+  /*     let options3 = {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -29,13 +29,13 @@ class Rplumber1 extends Component {
     console.log(texte);
  */
 
-    /// esto llama el end point
+  /// esto llama el end point
 
-    let resp = await fetch("https://159.89.83.159:8000/amef");
-    let text = await resp.text();
-    console.log(text);
-    /// esto llama el end poin
-  };
+  //let resp = await fetch("https://159.89.83.159:8000/amef");
+  //let text = await resp.text();
+  //console.log(text);
+  /// esto llama el end poin
+  ///};
 
   render = () => {
     return (
