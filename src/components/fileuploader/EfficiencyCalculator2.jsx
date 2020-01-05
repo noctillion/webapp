@@ -70,7 +70,7 @@ class EfficiencyPcrComp2 extends Component {
       //mode: "no-cors"//// AQUI SE ENVIA EL ARCHIVO AL SERVIDOR.. EN EL LAS RUTAS DE ///MONGO YA ESTAN HECHAS
     };
     let response = await fetch(
-      "http://167.172.220.203:4000/api/upload",
+      "http://159.89.83.159:4000/api/upload",
       options
     );
     let resBody = await response.text();
@@ -81,7 +81,7 @@ class EfficiencyPcrComp2 extends Component {
       headers: { Accept: "application/json" }
       //mode: "no-cors"///
     };
-    let res = await fetch("http://167.172.220.203:4000/api/upload", options2);
+    let res = await fetch("http://159.89.83.159:4000/api/upload", options2);
     let newD = await res.text();
     let juju = JSON.parse(newD);
     let codecSV = juju.map(on => {
@@ -123,7 +123,7 @@ class EfficiencyPcrComp2 extends Component {
       //mode: "no-cors"
     };
     let responseG = await fetch(
-      "http://167.172.220.203:8000/amepleff",
+      "http://159.89.83.159:8000/amepleff",
       options3
     );
     let texte = await responseG.json();
@@ -153,7 +153,7 @@ class EfficiencyPcrComp2 extends Component {
       //mode: "no-cors"
     };
     let respe = await fetch(
-      "http://167.172.220.203:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
+      "http://159.89.83.159:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
       options3
     );
     let texte = await respe.text();

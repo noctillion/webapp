@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Rplumber1 extends Component {
   componentDidMount = async () => {
-    let resp = await fetch("http://167.172.220.203:8000/amef");
+    let resp = await fetch("http://159.89.83.159:8000/amef");
     let text = await resp.text();
     console.log(text);
     /// esto llama el end poin
@@ -11,13 +11,13 @@ class Rplumber1 extends Component {
     return (
       <div className="AppR">
         <div></div>
-        <img src="http://167.172.220.203:8000/plot3" />
-        <img src="http://167.172.220.203:8000/plot5" />
-        <img src="http://167.172.220.203:8000/plot4" />
+        <img src="http://159.89.83.159:8000/plot3" />
+        <img src="http://159.89.83.159:8000/plot5" />
+        <img src="http://159.89.83.159:8000/plot4" />
       </div>
     );
   };
 }
 
 export default Rplumber1;
-/////<img src="http://167.172.220.203:8000/plot?randnum=30" />
+/////<img src="http://159.89.83.159:8000/plot?randnum=30" />
