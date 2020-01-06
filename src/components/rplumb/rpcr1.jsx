@@ -11,9 +11,9 @@ import SimpleReactFileUpload2 from "../fileuploader/Fileuploader6.jsx";
 import "./rpcr1.style.css";
 
 class Rplumber1 extends Component {
-  ///componentDidMount = async () => {
-  //// EJEMPLO FUNCIONAL CON POST// EL CODIGO FILE CAMBIA CADA VEZ
-  /*     let options3 = {
+  componentDidMount = async () => {
+    //// EJEMPLO FUNCIONAL CON POST// EL CODIGO FILE CAMBIA CADA VEZ
+    /*     let options3 = {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -22,20 +22,20 @@ class Rplumber1 extends Component {
       //mode: "no-cors"
     };
     let respe = await fetch(
-      "https://159.89.83.159:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
+      "http://159.89.83.159:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
       options3
     );
     let texte = await respe.text();
     console.log(texte);
  */
 
-  /// esto llama el end point
+    /// esto llama el end point
 
-  //let resp = await fetch("https://159.89.83.159:8000/amef");
-  //let text = await resp.text();
-  //console.log(text);
-  /// esto llama el end poin
-  ///};
+    let resp = await fetch("http://159.89.83.159:8000/amef");
+    let text = await resp.text();
+    console.log(text);
+    /// esto llama el end poin
+  };
 
   render = () => {
     return (
@@ -99,11 +99,11 @@ class Rplumber1 extends Component {
             </div>
           </div>
         </div>
-        {/*  <img className="plot plot1" src="https://159.89.83.159:8000/plot3" /> */}
+        {/*  <img className="plot plot1" src="http://159.89.83.159:8000/plot3" /> */}
       </div>
     );
   };
 }
 
 export default Rplumber1;
-/////<img src="https://159.89.83.159:8000/plot?randnum=30" />
+/////<img src="http://159.89.83.159:8000/plot?randnum=30" />

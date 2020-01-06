@@ -48,7 +48,7 @@ class SimpleReactFileUpload2 extends Component {
       //mode: "no-cors"//// AQUI SE ENVIA EL ARCHIVO AL SERVIDOR.. EN EL LAS RUTAS DE ///MONGO YA ESTAN HECHAS
     };
     let response = await fetch(
-      "https://159.89.83.159:4000/api/upload",
+      "http://159.89.83.159:4000/api/upload",
       options
     );
     let resBody = await response.text();
@@ -59,7 +59,7 @@ class SimpleReactFileUpload2 extends Component {
       headers: { Accept: "application/json" }
       //mode: "no-cors"///
     };
-    let res = await fetch("https://159.89.83.159:4000/api/upload", options2);
+    let res = await fetch("http://159.89.83.159:4000/api/upload", options2);
     let newD = await res.text();
     let juju = JSON.parse(newD);
     let codecSV = juju.map(on => {
@@ -87,7 +87,7 @@ class SimpleReactFileUpload2 extends Component {
       body: datat
       //mode: "no-cors"
     };
-    let responseG = await fetch("https://159.89.83.159:8000/plot2", options3);
+    let responseG = await fetch("http://159.89.83.159:8000/plot2", options3);
     let newG = await responseG.blob();
     let newB = await URL.createObjectURL(newG);
     console.log(newB);
