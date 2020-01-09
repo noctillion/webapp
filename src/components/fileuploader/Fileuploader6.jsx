@@ -87,7 +87,7 @@ class SimpleReactFileUpload2 extends Component {
       body: datat
       //mode: "no-cors"
     };
-    let responseG = await fetch("http://159.89.83.159:8000/plot2", options3);
+    let responseG = await fetch("http://localhost:8000/plot2", options3);
     let newG = await responseG.blob();
     let newB = await URL.createObjectURL(newG);
     console.log(newB);

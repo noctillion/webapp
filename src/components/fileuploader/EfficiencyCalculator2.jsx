@@ -123,7 +123,7 @@ class EfficiencyPcrComp2 extends Component {
       //mode: "no-cors"
     };
     let responseG = await fetch(
-      "http://159.89.83.159:8000/amepleff",
+      "http://localhost:8000/amepleff",
       options3
     );
     let texte = await responseG.json();
@@ -153,7 +153,7 @@ class EfficiencyPcrComp2 extends Component {
       //mode: "no-cors"
     };
     let respe = await fetch(
-      "http://159.89.83.159:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
+      "http://localhost:8000/amepleff?file=1576393048841&gv1=brain&gv2=kidney&eacH=6&refGe=GAPDH&refGr=brain",
       options3
     );
     let texte = await respe.text();

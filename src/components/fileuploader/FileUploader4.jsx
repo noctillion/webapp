@@ -28,10 +28,7 @@ class SimpleReactFileUpload extends Component {
       body: data
       //mode: "no-cors"//// AQUI SE ENVIA EL ARCHIVO AL SERVIDOR.. EN EL LAS RUTAS DE ///MONGO YA ESTAN HECHAS
     };
-    let response = await fetch(
-      "http://159.89.83.159:4000/api/upload",
-      options
-    );
+    let response = await fetch("http://159.89.83.159:4000/api/upload", options);
     let resBody = await response.text();
     console.log("this is from endpoint", resBody);
 
@@ -67,7 +64,7 @@ class SimpleReactFileUpload extends Component {
       body: datat
       //mode: "no-cors"
     };
-    let responseG = await fetch("http://159.89.83.159:8000/plot24", options3);
+    let responseG = await fetch("http://localhost:8000/plot24", options3);
     let newG = await responseG.blob();
     let newB = await URL.createObjectURL(newG);
     console.log(newB);
